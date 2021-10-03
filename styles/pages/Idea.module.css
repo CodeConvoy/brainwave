@@ -1,27 +1,31 @@
 .container {
   background: var(--black);
   height: 100%;
+  overflow: hidden;
+}
+
+.toolbar {
+  z-index: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  position: absolute;
+  height: 60px;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .backlink {
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: var(--white);
+  color: var(--gray);
 }
 
 .backlink:hover {
   color: var(--blue);
 }
 
-.container > h1 {
-  position: absolute;
+.toolbar > h1 {
   margin: 0;
-  top: 0;
-  color: var(--white);
+  color: var(--gray);
 }
 
 .container > canvas {
