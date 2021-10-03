@@ -16,6 +16,7 @@ let sketching = false;
 
 let prevX, prevY;
 let currX, currY;
+let offsetX, offsetY;
 
 const scrollSpeed = 4;
 
@@ -66,19 +67,30 @@ export default function Idea() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  // sketches canvas with given mouse event data
-  function sketch(e) {
-    // get previous and current mouse positions
+  // gets previous and current mouse positions
+  function getPrevCurr(e) {
     prevX = currX;
     prevY = currY;
     currX = e.clientX - canvas.offsetLeft + window.scrollX;
     currY = e.clientY - canvas.offsetTop + window.scrollY;
   }
 
+  // gets canvas mouse offset
+  function getOffset(e) {
+    offsetX = e.clientX - canvas.offsetLeft;
+    offsetY = e.clientY - canvas.offsetTop;
+  }
+
+  // called on canvas mouse down
+  function onMouseDown(e) {
+    sketching = true;
+    if (mode === 'draw') getPrevCurr(e);
+    else if (mode === 'move') getOffset(e);
+  }
+
   // draws on canvas with current sketch data
   function draw(e) {
-    // sketch mouse
-    sketch(e);
+    getPrevCurr(e);
     // draw stroke
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
@@ -87,18 +99,17 @@ export default function Idea() {
     ctx.closePath();
   }
 
-  // called on canvas mouse down
-  function onMouseDown(e) {
-    sketching = true;
-    // sketch if drawing
-    if (mode === 'draw') sketch(e);
+  // moves canvas to mouse position
+  function move(e) {
+    setCanvasX(e.clientX - offsetX);
+    setCanvasY(e.clientY - offsetY);
   }
 
   // called on canvas mouse move
   function onMouseMove(e) {
     if (!sketching) return;
-    // draw if drawing
     if (mode === 'draw') draw(e);
+    if (mode === 'move') move(e);
   }
 
   // stops sketching
