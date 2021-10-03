@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 
 import { getAuth, signOut } from 'firebase/auth';
@@ -20,6 +21,12 @@ export default function Index() {
           <button onClick={signInWithGoogle}>
             Sign in with Google
           </button>
+        }
+        {
+          auth.currentUser &&
+          <Link href="/ideas">
+            <a>Ideas</a>
+          </Link>
         }
       </div>
     </div>

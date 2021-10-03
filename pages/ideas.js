@@ -1,6 +1,7 @@
 import Loading from '../components/Loading';
 import Ideas from '../components/Ideas';
 import Router from 'next/router';
+import Link from 'next/link';
 
 import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
@@ -49,6 +50,9 @@ export default function Home() {
         />
         <button>Create Idea</button>
       </form>
+      <Link href="/">
+        <a>Home</a>
+      </Link>
     </div>
   );
 }

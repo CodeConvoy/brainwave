@@ -27,4 +27,6 @@ button {
 :root {
   --gray: #eaeef3;
   --blue: #2196f3;
+  --black: #212121;
+  --white: #ffffff;
 }
