@@ -29,7 +29,7 @@ export default function Ideas() {
   }, [uid]);
 
   return (
-    <div>
+    <div className={styles.container}>
       {
         ideas.map((idea, i) =>
           <IdeaCard {...idea} key={i} />
