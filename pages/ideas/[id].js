@@ -3,14 +3,17 @@ import Link from 'next/link';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import styles from '../../styles/pages/Idea.module.css';
 
 const canvasSize = 512;
 
+let canvas, ctx;
+
 export default function Idea() {
+  const canvasRef = useRef();
   const db = getFirestore();
   const router = useRouter();
 
@@ -31,10 +34,13 @@ export default function Idea() {
     if (id) getIdea();
   }, [id]);
 
-  // return if loading
-  if (!idea) {
-    return <Loading />;
   }
+
+  // get canvas context on start
+  useEffect(() => {
+    canvas = canvasRef.current;
+    ctx = canvas.getContext('2d');
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -43,8 +49,12 @@ export default function Idea() {
           <ArrowBackIcon />
         </a>
       </Link>
-      <h1>{idea.title}</h1>
-      <canvas width={canvasSize} height={canvasSize} />
+      <h1>{idea?.title}</h1>
+      <canvas
+        ref={canvasRef}
+        width={canvasSize}
+        height={canvasSize}
+      />
     </div>
   );
 }
