@@ -14,6 +14,9 @@ let canvas, ctx;
 
 let sketching = false;
 
+let prevX, prevY;
+let currX, currY;
+
 export default function Idea() {
   const canvasRef = useRef();
   const db = getFirestore();
@@ -45,6 +48,16 @@ export default function Idea() {
     currY = e.clientY - canvas.offsetTop + window.scrollY;
   }
 
+  // draws on canvas with current sketch data
+  function draw(e) {
+    // sketch mouse
+    sketch(e);
+    // draw stroke
+    ctx.beginPath();
+    ctx.moveTo(prevX, prevY);
+    ctx.lineTo(currX, currY);
+    ctx.stroke();
+    ctx.closePath();
   }
 
   // get canvas context on start
@@ -66,6 +79,7 @@ export default function Idea() {
         width={canvasSize}
         height={canvasSize}
         onMouseDown={e => { sketching = true; sketch(e); }}
+        onMouseMove={e => { if (sketching) draw(e); }}
         onMouseUp={e => { sketching = false; }}
         onMouseLeave={e => { sketching = false; }}
       />
