@@ -27,6 +27,8 @@ export default function Idea() {
   // get idea id
   const { id } = router.query;
 
+  const [mode, setMode] = useState('draw');
+
   const [canvasX, setCanvasX] = useState(0);
   const [canvasY, setCanvasY] = useState(0);
 
@@ -85,8 +87,24 @@ export default function Idea() {
     ctx.closePath();
   }
 
+  // called on canvas mouse down
+  function onMouseDown(e) {
+    sketching = true;
+    // sketch if drawing
+    if (mode === 'draw') sketch(e);
   }
 
+  // called on canvas mouse move
+  function onMouseMove(e) {
+    if (!sketching) return;
+    // draw if drawing
+    if (mode === 'draw') draw(e);
+  }
+
+  // stops sketching
+  function stopSketch() {
+    sketching = false;
+  }
 
   return (
     <div className={styles.container}>
@@ -103,10 +121,10 @@ export default function Idea() {
         ref={canvasRef}
         width={canvasSize}
         height={canvasSize}
-        onMouseDown={e => { sketching = true; sketch(e); }}
-        onMouseMove={e => { if (sketching) draw(e); }}
-        onMouseUp={e => { sketching = false; }}
-        onMouseLeave={e => { sketching = false; }}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={stopSketch}
+        onMouseLeave={stopSketch}
       />
     </div>
   );
