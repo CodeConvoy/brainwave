@@ -3,7 +3,7 @@ import IdeaCard from '../components/IdeaCard';
 
 import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore, orderBy, collection, query, where, getDocs } from 'firebase/firestore';
 
 import styles from '../styles/components/Ideas.module.css';
 
@@ -16,7 +16,9 @@ export default function Ideas() {
   // get ideas query
   const uid = auth.currentUser.uid;
   const ideasRef = collection(db, 'ideas');
-  const ideasQuery = query(ideasRef, where('creator', '==', uid));
+  const ideasQuery = query(
+    ideasRef, orderBy('modified', 'desc'), where('creator', '==', uid)
+  );
 
   // retrieves ideas from firebase
   async function getIdeas() {

@@ -1,5 +1,6 @@
 import Loading from '../components/Loading';
 import Ideas from '../components/Ideas';
+import Router from 'next/router';
 
 import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
@@ -19,7 +20,13 @@ export default function Home() {
 
   // creates a new idea
   async function createIdea() {
-    await addDoc(ideasRef, { title, creator: uid });
+    // create document in firebase
+    const now = new Date().getTime();
+    const docRef = await addDoc(ideasRef, {
+      title, creator: uid, created: now, modified: now
+    });
+    // go to idea page
+    Router.push(`/ideas/${docRef.id}`);
   }
 
   // return if loading
