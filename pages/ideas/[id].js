@@ -25,6 +25,9 @@ export default function Idea() {
   // get idea id
   const { id } = router.query;
 
+  const [canvasX, setCanvasX] = useState(0);
+  const [canvasY, setCanvasY] = useState(0);
+
   const [idea, setIdea] = useState(undefined);
 
   // retrieves idea from firebase
@@ -60,10 +63,24 @@ export default function Idea() {
     ctx.closePath();
   }
 
-  // get canvas context on start
+  // called when key is pressed
+  function onKeyDown(e) {
+    const keyCode = e.keyCode;
+    if (keyCode === 37) setCanvasX(oldX => oldX - 1); // left
+    if (keyCode === 38) setCanvasY(oldY => oldY - 1); // up
+    if (keyCode === 39) setCanvasX(oldX => oldX + 1); // right
+    if (keyCode === 40) setCanvasY(oldY => oldY + 1); // down
+  }
+
+  // on start
   useEffect(() => {
+    // get canvas context
     canvas = canvasRef.current;
     ctx = canvas.getContext('2d');
+    // set up key listener
+    window.addEventListener('keydown', onKeyDown);
+    // clean up listeners on return
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
   return (
@@ -75,6 +92,7 @@ export default function Idea() {
       </Link>
       <h1>{idea?.title}</h1>
       <canvas
+        style={{ position: 'relative', left: canvasX, top: canvasY }}
         ref={canvasRef}
         width={canvasSize}
         height={canvasSize}
