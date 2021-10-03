@@ -8,6 +8,8 @@ import { useRouter } from 'next/router';
 
 import styles from '../../styles/pages/Idea.module.css';
 
+const canvasSize = 512;
+
 export default function Idea() {
   const db = getFirestore();
   const router = useRouter();
@@ -35,13 +37,14 @@ export default function Idea() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <Link href="/ideas">
         <a className={styles.backlink}>
           <ArrowBackIcon />
         </a>
       </Link>
       <h1>{idea.title}</h1>
+      <canvas width={canvasSize} height={canvasSize} />
     </div>
   );
 }

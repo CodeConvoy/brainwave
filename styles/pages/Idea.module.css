@@ -1,8 +1,29 @@
+.container {
+  background: var(--black);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .backlink {
   position: absolute;
   top: 0;
+  left: 0;
+  color: var(--white);
 }
 
 .backlink:hover {
   color: var(--blue);
+}
+
+.container > h1 {
+  position: absolute;
+  margin: 0;
+  top: 0;
+  color: var(--white);
+}
+
+.container > canvas {
+  background: var(--white);
 }
