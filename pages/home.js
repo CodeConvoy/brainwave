@@ -1,3 +1,5 @@
+import IdeaCard from '../components/IdeaCard';
+
 import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, query, where, getDocs, addDoc } from 'firebase/firestore';
@@ -27,9 +29,20 @@ export default function Home() {
     setIdeas(ideasDocs.map(ideaDoc => ({ ...ideaDoc.data(), id: ideaDoc.id })));
   }
 
+  // get ideas on start
+  useEffect(() => {
+    getIdeas();
+  }, [uid]);
+
   return (
     <div>
       <div>
+        {
+          ideas &&
+          ideas.map((idea, i) =>
+            <IdeaCard {...idea} key={i} />
+          )
+        }
       </div>
       <form onSubmit={e => {
         e.preventDefault();
