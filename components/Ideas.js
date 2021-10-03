@@ -1,3 +1,4 @@
+import Loading from './Loading';
 import IdeaCard from '../components/IdeaCard';
 
 import { useEffect, useState } from 'react';
@@ -27,6 +28,11 @@ export default function Ideas() {
   useEffect(() => {
     getIdeas();
   }, [uid]);
+
+  // return if loading
+  if (!ideas) {
+    return <Loading />;
+  }
 
   return (
     <div className={styles.container}>

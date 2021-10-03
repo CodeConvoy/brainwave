@@ -1,3 +1,4 @@
+import Loading from '../components/Loading';
 import Ideas from '../components/Ideas';
 
 import { useEffect, useState } from 'react';
@@ -19,6 +20,11 @@ export default function Home() {
   // creates a new idea
   async function createIdea() {
     await addDoc(ideasRef, { title, creator: uid });
+  }
+
+  // return if loading
+  if (!uid) {
+    return <Loading />;
   }
 
   return (

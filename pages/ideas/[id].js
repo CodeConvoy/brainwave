@@ -1,3 +1,5 @@
+import Loading from '../../components/Loading';
+
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -24,6 +26,11 @@ export default function Idea() {
   useEffect(() => {
     if (id) getIdea();
   }, [id]);
+
+  // return if loading
+  if (!idea) {
+    return <Loading />;
+  }
 
   return (
     <div>
