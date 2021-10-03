@@ -12,6 +12,8 @@ const canvasSize = 512;
 
 let canvas, ctx;
 
+let sketching = false;
+
 export default function Idea() {
   const canvasRef = useRef();
   const db = getFirestore();
@@ -34,6 +36,15 @@ export default function Idea() {
     if (id) getIdea();
   }, [id]);
 
+  // sketches canvas with given mouse event data
+  function sketch(e) {
+    // get previous and current mouse positions
+    prevX = currX;
+    prevY = currY;
+    currX = e.clientX - canvas.offsetLeft + window.scrollX;
+    currY = e.clientY - canvas.offsetTop + window.scrollY;
+  }
+
   }
 
   // get canvas context on start
@@ -54,6 +65,9 @@ export default function Idea() {
         ref={canvasRef}
         width={canvasSize}
         height={canvasSize}
+        onMouseDown={e => { sketching = true; sketch(e); }}
+        onMouseUp={e => { sketching = false; }}
+        onMouseLeave={e => { sketching = false; }}
       />
     </div>
   );
