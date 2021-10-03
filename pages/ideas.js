@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
-import styles from '../styles/pages/Home.module.css';
+import styles from '../styles/pages/Ideas.module.css';
 
 export default function Home() {
   const auth = getAuth();
