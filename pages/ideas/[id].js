@@ -1,10 +1,12 @@
 import Loading from '../../components/Loading';
+import Link from 'next/link';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import styles from '../../pages/Idea.module.css';
+import styles from '../../styles/pages/Idea.module.css';
 
 export default function Idea() {
   const db = getFirestore();
@@ -34,6 +36,11 @@ export default function Idea() {
 
   return (
     <div>
+      <Link href="/ideas">
+        <a className={styles.backlink}>
+          <ArrowBackIcon />
+        </a>
+      </Link>
       <h1>{idea.title}</h1>
     </div>
   );

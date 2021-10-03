@@ -1,0 +1,8 @@
+.backlink {
+  position: absolute;
+  top: 0;
+}
+
+.backlink:hover {
+  color: var(--blue);
+}
