@@ -4,7 +4,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import EditIcon from '@mui/icons-material/Edit';
-import PanToolIcon from '@mui/icons-material/PanTool';
 
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
@@ -32,12 +31,6 @@ export default function Idea() {
   // get idea id
   const { id } = router.query;
 
-  const [mode, setMode] = useState('draw');
-  const [dialOpen, setDialOpen] = useState(false);
-
-  const [canvasX, setCanvasX] = useState(0);
-  const [canvasY, setCanvasY] = useState(0);
-
   const [idea, setIdea] = useState(undefined);
 
   // retrieves idea from firebase
@@ -52,13 +45,6 @@ export default function Idea() {
     if (id) getIdea();
   }, [id]);
 
-  // called when key is pressed
-  function onKeyDown(e) {
-    const keyCode = e.keyCode;
-    if (keyCode === 37) setCanvasX(oldX => oldX - scrollSpeed); // left
-    if (keyCode === 38) setCanvasY(oldY => oldY - scrollSpeed); // up
-    if (keyCode === 39) setCanvasX(oldX => oldX + scrollSpeed); // right
-    if (keyCode === 40) setCanvasY(oldY => oldY + scrollSpeed); // down
   }
 
   // on start
@@ -102,30 +88,6 @@ export default function Idea() {
     ctx.lineTo(currX, currY);
     ctx.stroke();
     ctx.closePath();
-  }
-
-  // moves canvas to mouse position
-  function move(e) {
-    setCanvasX(e.clientX - offsetX);
-    setCanvasY(e.clientY - offsetY);
-  }
-
-  // called on canvas mouse move
-  function onMouseMove(e) {
-    if (!sketching) return;
-    if (mode === 'draw') draw(e);
-    if (mode === 'move') move(e);
-  }
-
-  // stops sketching
-  function stopSketch() {
-    sketching = false;
-  }
-
-  // returns icon for given type
-  function getIcon(type) {
-    if (type === 'draw') return <EditIcon />;
-    else if (type === 'move') return <PanToolIcon />;
   }
 
   return (
