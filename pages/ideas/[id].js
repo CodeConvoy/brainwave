@@ -137,26 +137,6 @@ export default function Idea() {
           </a>
         </Link>
         <h1>{idea?.title}</h1>
-        <SpeedDial
-          ariaLabel="toolselect"
-          open={dialOpen}
-          onOpen={() => setDialOpen(true)}
-          onClose={() => setDialOpen(false)}
-          icon={getIcon(mode)}
-          direction="down"
-        >
-          {['draw', 'move'].map((type, i) =>
-            <SpeedDialAction
-              onClick={() => {
-                setDialOpen(false);
-                setMode(type);
-              }}
-              icon={getIcon(type)}
-              tooltipTitle={type.charAt(0).toUpperCase() + type.slice(1)}
-              key={i}
-            />
-          )}
-        </SpeedDial>
       </div>
       <canvas
         style={{ position: 'relative', left: canvasX, top: canvasY }}
