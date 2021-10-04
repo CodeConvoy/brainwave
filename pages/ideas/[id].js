@@ -5,6 +5,7 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import GetAppIcon from '@mui/icons-material/GetApp';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
@@ -73,10 +74,12 @@ export default function Idea() {
 
   // on start
   useEffect(() => {
-    // get ref contexts
+    // get element references
     canvas = canvasRef.current;
-    ctx = canvas.getContext('2d');
     container = containerRef.current;
+    // initialize canvas
+    ctx = canvas.getContext('2d');
+    clearCanvas();
     // set up container wheel listener
     container.addEventListener('wheel', onWheel);
     return () => container.removeEventListener('wheel', onWheel);
@@ -99,6 +102,13 @@ export default function Idea() {
     ctx.lineTo(currX, currY);
     ctx.stroke();
     ctx.closePath();
+  }
+
+  // fills canvas with white
+  function clearCanvas() {
+    ctx.fillStyle = 'white';
+    ctx.rect(0, 0, canvasWidth, canvasHeight);
+    ctx.fill();
   }
 
   // downloads canvas as a png
@@ -174,6 +184,15 @@ export default function Idea() {
             }}
             icon={<GetAppIcon />}
             tooltipTitle="Download"
+          />
+          <SpeedDialAction
+            onClick={() => {
+              setActionOpen(false);
+              if (!window.confirm('Clear canvas?')) return;
+              clearCanvas();
+            }}
+            icon={<DeleteIcon />}
+            tooltipTitle="Clear"
           />
         </SpeedDial>
       </div>
