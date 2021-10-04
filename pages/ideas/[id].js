@@ -59,29 +59,16 @@ export default function Idea() {
   }, []);
 
   // gets previous and current mouse positions
-  function getPrevCurr(e) {
+  function sketch(e) {
     prevX = currX;
     prevY = currY;
-    currX = e.clientX - canvas.offsetLeft + window.scrollX;
-    currY = e.clientY - canvas.offsetTop + window.scrollY;
-  }
-
-  // gets canvas mouse offset
-  function getOffset(e) {
-    offsetX = e.clientX - canvas.offsetLeft;
-    offsetY = e.clientY - canvas.offsetTop;
-  }
-
-  // called on canvas mouse down
-  function onMouseDown(e) {
-    sketching = true;
-    if (mode === 'draw') getPrevCurr(e);
-    else if (mode === 'move') getOffset(e);
+    currX = e.clientX - canvas.offsetLeft + container.scrollLeft;
+    currY = e.clientY - canvas.offsetTop + container.scrollTop;
   }
 
   // draws on canvas with current sketch data
   function draw(e) {
-    getPrevCurr(e);
+    sketch(e);
     // draw stroke
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
@@ -91,16 +78,15 @@ export default function Idea() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={containerRef}>
       <canvas
-        style={{ position: 'relative', left: canvasX, top: canvasY }}
         ref={canvasRef}
-        width={canvasSize}
-        height={canvasSize}
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={stopSketch}
-        onMouseLeave={stopSketch}
+        width={canvasWidth}
+        height={canvasHeight}
+        onMouseDown={e => { sketching = true; sketch(e); }}
+        onMouseMove={e => { if (sketching) draw(e); }}
+        onMouseUp={e => { sketching = false; }}
+        onMouseLeave={e => { sketching = false; }}
       />
     </div>
   );
