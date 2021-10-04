@@ -124,6 +124,13 @@ export default function Idea() {
     });
   }
 
+  // saves canvas as data url
+  async function saveCanvas() {
+    const sketch = canvas.toDataURL();
+    const ideaRef = doc(db, 'ideas', id);
+    await updateDoc(ideaRef, { sketch });
+  }
+
   return (
     <div className={styles.container} ref={containerRef}>
       <div className={styles.toolbar}>
@@ -202,8 +209,8 @@ export default function Idea() {
         height={canvasHeight}
         onMouseDown={e => { sketching = true; sketch(e); }}
         onMouseMove={e => { if (sketching) draw(e); }}
-        onMouseUp={e => { sketching = false; }}
-        onMouseLeave={e => { sketching = false; }}
+        onMouseUp={e => { sketching = false; saveCanvas(); }}
+        onMouseLeave={e => { sketching = false; saveCanvas(); }}
       />
     </div>
   );
