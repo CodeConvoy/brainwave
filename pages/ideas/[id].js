@@ -2,6 +2,9 @@ import Loading from '../../components/Loading';
 import Link from 'next/link';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import EditIcon from '@mui/icons-material/Edit';
+import PanToolIcon from '@mui/icons-material/PanTool';
 
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
@@ -119,6 +122,12 @@ export default function Idea() {
     sketching = false;
   }
 
+  // returns icon for given type
+  function getIcon(type) {
+    if (type === 'draw') return <EditIcon />;
+    else if (type === 'move') return <PanToolIcon />;
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.toolbar}>
@@ -136,6 +145,17 @@ export default function Idea() {
           icon={getIcon(mode)}
           direction="down"
         >
+          {['draw', 'move'].map((type, i) =>
+            <SpeedDialAction
+              onClick={() => {
+                setDialOpen(false);
+                setMode(type);
+              }}
+              icon={getIcon(type)}
+              tooltipTitle={type.charAt(0).toUpperCase() + type.slice(1)}
+              key={i}
+            />
+          )}
         </SpeedDial>
       </div>
       <canvas
