@@ -3,6 +3,17 @@
   overflow: scroll;
 }
 
+.toolbar {
+  position: absolute;
+  display: flex;
+  pointer-events: none;
+  margin: 5px;
+}
+
+.toolbar > div {
+  margin: 5px;
+}
+
 .container > canvas {
   background: var(--white);
   display: block;

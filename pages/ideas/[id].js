@@ -96,7 +96,7 @@ export default function Idea() {
 
   return (
     <div className={styles.container} ref={containerRef}>
-      <div>
+      <div className={styles.toolbar}>
         <SpeedDial
           ariaLabel="colordial"
           open={colorOpen}
