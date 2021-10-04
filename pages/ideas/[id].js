@@ -7,7 +7,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -53,6 +53,15 @@ export default function Idea() {
     const ideaRef = doc(db, 'ideas', id);
     const ideaDoc = await getDoc(ideaRef);
     setIdea({ ...ideaDoc.data(), id: ideaDoc.id });
+    // initialize canvas
+    const sketch = ideaDoc.data().sketch;
+    if (sketch) {
+      const image = new Image();
+      image.onload = () => {
+        ctx.drawImage(image, 0, 0);
+      }
+      image.src = sketch;
+    } else clearCanvas();
   }
 
   // get idea on start
@@ -76,10 +85,8 @@ export default function Idea() {
   useEffect(() => {
     // get element references
     canvas = canvasRef.current;
-    container = containerRef.current;
-    // initialize canvas
     ctx = canvas.getContext('2d');
-    clearCanvas();
+    container = containerRef.current;
     // set up container wheel listener
     container.addEventListener('wheel', onWheel);
     return () => container.removeEventListener('wheel', onWheel);
