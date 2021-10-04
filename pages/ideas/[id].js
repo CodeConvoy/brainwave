@@ -26,6 +26,8 @@ let currX, currY;
 const scrollSpeed = 4;
 
 const colors = ['black', 'red', 'green', 'blue', 'white'];
+const sizes = [1, 2, 3, 4, 5];
+
 export default function Idea() {
   const containerRef = useRef();
   const canvasRef = useRef();
@@ -37,6 +39,9 @@ export default function Idea() {
 
   const [colorOpen, setColorOpen] = useState(false);
   const [drawColor, setDrawColor] = useState('black');
+
+  const [sizeOpen, setSizeOpen] = useState(false);
+  const [drawSize, setDrawSize] = useState(1);
 
   const [idea, setIdea] = useState(undefined);
 
@@ -114,6 +119,27 @@ export default function Idea() {
               }}
               icon={<FiberManualRecordIcon />}
               tooltipTitle={color.charAt(0).toUpperCase() + color.slice(1)}
+              key={i}
+            />
+          )}
+        </SpeedDial>
+        <SpeedDial
+          ariaLabel="sizedial"
+          open={sizeOpen}
+          onOpen={() => setSizeOpen(true)}
+          onClose={() => setSizeOpen(false)}
+          icon={<SpeedDialIcon />}
+          direction="down"
+        >
+          {sizes.map((size, i) =>
+            <SpeedDialAction
+              onClick={() => {
+                setSizeOpen(false);
+                ctx.lineWidth = size;
+                setDrawSize(size);
+              }}
+              icon={<FiberManualRecordIcon />}
+              tooltipTitle={size}
               key={i}
             />
           )}
