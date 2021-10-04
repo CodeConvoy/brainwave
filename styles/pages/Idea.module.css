@@ -4,30 +4,6 @@
   overflow: hidden;
 }
 
-.toolbar {
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  height: 60px;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.backlink {
-  color: var(--gray);
-}
-
-.backlink:hover {
-  color: var(--blue);
-}
-
-.toolbar > h1 {
-  margin: 0;
-  color: var(--gray);
-}
-
 .container > canvas {
   background: var(--white);
 }

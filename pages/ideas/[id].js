@@ -130,14 +130,6 @@ export default function Idea() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.toolbar}>
-        <Link href="/ideas">
-          <a className={styles.backlink}>
-            <ArrowBackIcon />
-          </a>
-        </Link>
-        <h1>{idea?.title}</h1>
-      </div>
       <canvas
         style={{ position: 'relative', left: canvasX, top: canvasY }}
         ref={canvasRef}
