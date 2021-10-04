@@ -1,6 +1,5 @@
 import Loading from '../../components/Loading';
 import Link from 'next/link';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
@@ -42,6 +41,8 @@ export default function Idea() {
 
   const [sizeOpen, setSizeOpen] = useState(false);
   const [drawSize, setDrawSize] = useState(1);
+
+  const [actionOpen, setActionOpen] = useState(false);
 
   const [idea, setIdea] = useState(undefined);
 
@@ -143,6 +144,15 @@ export default function Idea() {
               key={i}
             />
           )}
+        </SpeedDial>
+        <SpeedDial
+          ariaLabel="actiondial"
+          open={actionOpen}
+          onOpen={() => setActionOpen(true)}
+          onClose={() => setActionOpen(false)}
+          icon={<SpeedDialIcon />}
+          direction="down"
+        >
         </SpeedDial>
       </div>
       <canvas
