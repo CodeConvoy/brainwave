@@ -47,21 +47,28 @@ export default function Idea() {
   const [actionOpen, setActionOpen] = useState(false);
 
   const [idea, setIdea] = useState(undefined);
+  const [loading, setLoading] = useState(true);
 
   // retrieves idea from firebase
   async function getIdea() {
+    // get idea data
     const ideaRef = doc(db, 'ideas', id);
     const ideaDoc = await getDoc(ideaRef);
     setIdea({ ...ideaDoc.data(), id: ideaDoc.id });
-    // initialize canvas
     const sketch = ideaDoc.data().sketch;
+    // if sketch, load image to canvas
     if (sketch) {
       const image = new Image();
       image.onload = () => {
         ctx.drawImage(image, 0, 0);
+        setLoading(false);
       }
       image.src = sketch;
-    } else clearCanvas();
+    // if no sketch, clear canvas
+    } else {
+      clearCanvas();
+      setLoading(false);
+    }
   }
 
   // get idea on start
@@ -209,6 +216,10 @@ export default function Idea() {
             tooltipTitle="Clear"
           />
         </SpeedDial>
+        {
+          (!idea || loading) &&
+          <Loading />
+        }
       </div>
       <canvas
         ref={canvasRef}
