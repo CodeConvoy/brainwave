@@ -1,6 +1,7 @@
 import Loading from '../../components/Loading';
 import Link from 'next/link';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SpeedDial from '@mui/material/SpeedDial';
 
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
@@ -29,6 +30,7 @@ export default function Idea() {
   const { id } = router.query;
 
   const [mode, setMode] = useState('draw');
+  const [dialOpen, setDialOpen] = useState(false);
 
   const [canvasX, setCanvasX] = useState(0);
   const [canvasY, setCanvasY] = useState(0);
@@ -126,6 +128,15 @@ export default function Idea() {
           </a>
         </Link>
         <h1>{idea?.title}</h1>
+        <SpeedDial
+          ariaLabel="toolselect"
+          open={dialOpen}
+          onOpen={() => setDialOpen(true)}
+          onClose={() => setDialOpen(false)}
+          icon={getIcon(mode)}
+          direction="down"
+        >
+        </SpeedDial>
       </div>
       <canvas
         style={{ position: 'relative', left: canvasX, top: canvasY }}
