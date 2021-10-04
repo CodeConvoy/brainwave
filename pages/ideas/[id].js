@@ -132,7 +132,7 @@ export default function Idea() {
           open={colorOpen}
           onOpen={() => setColorOpen(true)}
           onClose={() => setColorOpen(false)}
-          icon={<SpeedDialIcon />}
+          icon={<FiberManualRecordIcon style={{ color: drawColor }} />}
           direction="down"
         >
           {colors.map((color, i) =>
@@ -142,7 +142,7 @@ export default function Idea() {
                 ctx.strokeStyle = color;
                 setDrawColor(color);
               }}
-              icon={<FiberManualRecordIcon />}
+              icon={<FiberManualRecordIcon style={{ color: color }} />}
               tooltipTitle={color.charAt(0).toUpperCase() + color.slice(1)}
               key={i}
             />
@@ -153,7 +153,7 @@ export default function Idea() {
           open={sizeOpen}
           onOpen={() => setSizeOpen(true)}
           onClose={() => setSizeOpen(false)}
-          icon={<SpeedDialIcon />}
+          icon={<FiberManualRecordIcon style={{ fontSize: drawSize * 8 }} />}
           direction="down"
         >
           {sizes.map((size, i) =>
@@ -163,7 +163,7 @@ export default function Idea() {
                 ctx.lineWidth = size;
                 setDrawSize(size);
               }}
-              icon={<FiberManualRecordIcon />}
+              icon={<FiberManualRecordIcon style={{ fontSize: size * 8 }} />}
               tooltipTitle={size}
               key={i}
             />
