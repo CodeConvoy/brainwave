@@ -4,6 +4,7 @@ import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import GetAppIcon from '@mui/icons-material/GetApp';
 
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
@@ -11,8 +12,8 @@ import { useRouter } from 'next/router';
 
 import styles from '../../styles/pages/Idea.module.css';
 
-const canvasWidth = 3000;
-const canvasHeight = 3000;
+const canvasWidth = 2048;
+const canvasHeight = 2048;
 
 let canvas, ctx;
 let container;
@@ -100,6 +101,19 @@ export default function Idea() {
     ctx.closePath();
   }
 
+  // downloads canvas as a png
+  function downloadCanvas() {
+    // get canvas object url
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      // download from link element
+      const link = document.createElement('a');
+      link.download = 'idea.png';
+      link.href = url;
+      link.click();
+    });
+  }
+
   return (
     <div className={styles.container} ref={containerRef}>
       <div className={styles.toolbar}>
@@ -153,6 +167,14 @@ export default function Idea() {
           icon={<SpeedDialIcon />}
           direction="down"
         >
+          <SpeedDialAction
+            onClick={() => {
+              setActionOpen(false);
+              downloadCanvas();
+            }}
+            icon={<GetAppIcon />}
+            tooltipTitle="Download"
+          />
         </SpeedDial>
       </div>
       <canvas
