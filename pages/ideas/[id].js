@@ -2,8 +2,9 @@ import Loading from '../../components/Loading';
 import Link from 'next/link';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import EditIcon from '@mui/icons-material/Edit';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
@@ -24,6 +25,7 @@ let currX, currY;
 
 const scrollSpeed = 4;
 
+const colors = ['black', 'red', 'green', 'blue', 'white'];
 export default function Idea() {
   const containerRef = useRef();
   const canvasRef = useRef();
@@ -32,6 +34,9 @@ export default function Idea() {
 
   // get idea id
   const { id } = router.query;
+
+  const [colorOpen, setColorOpen] = useState(false);
+  const [drawColor, setDrawColor] = useState('black');
 
   const [idea, setIdea] = useState(undefined);
 
@@ -91,6 +96,29 @@ export default function Idea() {
 
   return (
     <div className={styles.container} ref={containerRef}>
+      <div>
+        <SpeedDial
+          ariaLabel="colordial"
+          open={colorOpen}
+          onOpen={() => setColorOpen(true)}
+          onClose={() => setColorOpen(false)}
+          icon={<SpeedDialIcon />}
+          direction="down"
+        >
+          {colors.map((color, i) =>
+            <SpeedDialAction
+              onClick={() => {
+                setColorOpen(false);
+                ctx.strokeStyle = color;
+                setDrawColor(color);
+              }}
+              icon={<FiberManualRecordIcon />}
+              tooltipTitle={color.charAt(0).toUpperCase() + color.slice(1)}
+              key={i}
+            />
+          )}
+        </SpeedDial>
+      </div>
       <canvas
         ref={canvasRef}
         width={canvasWidth}
