@@ -1,9 +1,9 @@
 .container {
-  background: var(--black);
   height: 100%;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .container > canvas {
   background: var(--white);
+  display: block;
 }
