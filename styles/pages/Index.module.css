@@ -28,12 +28,3 @@
 .links {
   padding: 20px;
 }
-
-.links > a {
-  color: var(--blue);
-}
-
-.links > a:hover {
-  color: var(--purple);
-  text-decoration: underline;
-}

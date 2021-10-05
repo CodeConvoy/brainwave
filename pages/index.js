@@ -26,7 +26,7 @@ export default function Index() {
           auth.currentUser &&
           <div className={styles.links}>
             <Link href="/ideas">
-              <a>Ideas</a>
+              <a className="link">Ideas</a>
             </Link>
           </div>
         }

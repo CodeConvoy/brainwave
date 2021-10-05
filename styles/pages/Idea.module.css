@@ -1,6 +1,7 @@
 .container {
   height: 100%;
   overflow: scroll;
+  background: #efefef;
 }
 
 .toolbar {

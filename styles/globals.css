@@ -20,6 +20,15 @@ a {
   text-decoration: none;
 }
 
+.link {
+  color: var(--blue);
+}
+
+.link:hover {
+  color: var(--purple);
+  text-decoration: underline;
+}
+
 button {
   cursor: pointer;
 }
@@ -27,6 +36,7 @@ button {
 :root {
   --gray: #eaeef3;
   --blue: #2196f3;
+  --purple: #3f51b5;
   --black: #212121;
   --white: #ffffff;
 }
