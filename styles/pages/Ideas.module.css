@@ -1,0 +1,11 @@
+.container > form {
+  padding: 20px;
+}
+
+.container > form > button {
+  margin-left: 10px;
+}
+
+.container > a {
+  padding: 20px;
+}

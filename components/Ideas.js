@@ -39,6 +39,8 @@ export default function Ideas() {
   return (
     <div className={styles.container}>
       {
+        !ideas.length ?
+        <p>No ideas yet</p> :
         ideas.map((idea, i) =>
           <IdeaCard {...idea} key={i} />
         )

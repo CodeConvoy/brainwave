@@ -36,7 +36,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <Ideas />
       <form onSubmit={e => {
         e.preventDefault();
@@ -51,7 +51,7 @@ export default function Home() {
         <button>Create Idea</button>
       </form>
       <Link href="/">
-        <a>Home</a>
+        <a className="link">Home</a>
       </Link>
     </div>
   );
