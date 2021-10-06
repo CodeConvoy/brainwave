@@ -4,6 +4,7 @@ import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import CommentIcon from '@mui/icons-material/Comment';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -145,6 +146,12 @@ export default function Idea() {
     await updateDoc(ideaRef, { sketch });
   }
 
+  // creates a blank note on canvas
+  function createNote() {
+    const note = document.createElement('textarea');
+    container.append(note);
+  }
+
   return (
     <div className={styles.container} ref={containerRef}>
       <div className={styles.toolbar}>
@@ -198,6 +205,14 @@ export default function Idea() {
           icon={<SpeedDialIcon />}
           direction="down"
         >
+          <SpeedDialAction
+            onClick={() => {
+              setActionOpen(false);
+              createNote();
+            }}
+            icon={<CommentIcon />}
+            tooltipTitle="Add Note"
+          />
           <SpeedDialAction
             onClick={() => {
               setActionOpen(false);
