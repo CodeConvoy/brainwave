@@ -29,7 +29,6 @@ const scrollSpeed = 4;
 
 const colors = ['black', 'red', 'green', 'blue', 'white'];
 const sizes = [1, 2, 3, 4, 5];
-let notes = [];
 
 export default function Idea() {
   const containerRef = useRef();
@@ -50,6 +49,8 @@ export default function Idea() {
 
   const [idea, setIdea] = useState(undefined);
   const [loading, setLoading] = useState(true);
+
+  const [notes, setNotes] = useState([]);
 
   // retrieves idea from firebase
   async function getIdea() {
@@ -152,6 +153,13 @@ export default function Idea() {
     notes.push(0);
   }
 
+  // removes note at given index
+  function removeNote(index) {
+    const newNotes = notes.slice();
+    newNotes.splice(index, 1);
+    setNotes(newNotes);
+  }
+
   return (
     <div className={styles.container} ref={containerRef}>
       <div className={styles.toolbar}>
@@ -248,7 +256,10 @@ export default function Idea() {
       <div className={styles.notes}>
         {
           notes.map((note, i) =>
-            <textarea key={i} />
+            <div key={i}>
+              <button onClick={() => removeNote(i)}>x</button>
+              <textarea />
+            </div>
           )
         }
       </div>
