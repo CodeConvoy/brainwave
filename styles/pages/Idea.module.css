@@ -19,3 +19,15 @@
   background: var(--white);
   display: block;
 }
+
+.notes {
+  position: absolute;
+  inset: 0;
+}
+
+.notes > textarea {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}

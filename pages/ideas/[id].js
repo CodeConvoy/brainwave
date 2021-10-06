@@ -29,6 +29,7 @@ const scrollSpeed = 4;
 
 const colors = ['black', 'red', 'green', 'blue', 'white'];
 const sizes = [1, 2, 3, 4, 5];
+let notes = [];
 
 export default function Idea() {
   const containerRef = useRef();
@@ -148,8 +149,7 @@ export default function Idea() {
 
   // creates a blank note on canvas
   function createNote() {
-    const note = document.createElement('textarea');
-    container.append(note);
+    notes.push(0);
   }
 
   return (
@@ -245,6 +245,13 @@ export default function Idea() {
         onMouseUp={e => { sketching = false; saveCanvas(); }}
         onMouseLeave={e => { sketching = false; saveCanvas(); }}
       />
+      <div className={styles.notes}>
+        {
+          notes.map((note, i) =>
+            <textarea key={i} />
+          )
+        }
+      </div>
     </div>
   );
 }
