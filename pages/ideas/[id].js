@@ -274,6 +274,7 @@ export default function Idea() {
         {
           notes.map((note, i) =>
             <Note
+              container={container}
               removeNote={removeNote}
               index={i}
               key={i}
