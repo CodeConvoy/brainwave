@@ -176,7 +176,7 @@ export default function Idea() {
   }
 
   return (
-    <div className={styles.container} ref={containerRef}>
+    <>
       <div className={styles.toolbar}>
         <SpeedDial
           ariaLabel="colordial"
@@ -259,30 +259,32 @@ export default function Idea() {
           <Loading />
         }
       </div>
-      <canvas
-        ref={canvasRef}
-        width={canvasWidth}
-        height={canvasHeight}
-        onMouseDown={e => { sketching = true; sketch(e); }}
-        onMouseMove={e => { if (sketching) draw(e); }}
-        onMouseUp={e => { sketching = false; saveCanvas(); }}
-        onMouseLeave={e => { sketching = false; saveCanvas(); }}
-      />
-      {
-        notes.map((note, i) =>
-          <div
-            className={styles.note}
-            onMouseDown={e => setNote(i, true)}
-            onMouseMove={e => { if (notes[i].sketching) moveNote(i, e); }}
-            onMouseUp={e => setNote(i, false)}
-            onMouseLeave={e => setNote(i, false)}
-            key={i}
-          >
-            <button onClick={() => removeNote(i)}>x</button>
-            <textarea />
-          </div>
-        )
-      }
-    </div>
+      <div className={styles.container} ref={containerRef}>
+        <canvas
+          ref={canvasRef}
+          width={canvasWidth}
+          height={canvasHeight}
+          onMouseDown={e => { sketching = true; sketch(e); }}
+          onMouseMove={e => { if (sketching) draw(e); }}
+          onMouseUp={e => { sketching = false; saveCanvas(); }}
+          onMouseLeave={e => { sketching = false; saveCanvas(); }}
+        />
+        {
+          notes.map((note, i) =>
+            <div
+              className={styles.note}
+              onMouseDown={e => setNote(i, true)}
+              onMouseMove={e => { if (notes[i].sketching) moveNote(i, e); }}
+              onMouseUp={e => setNote(i, false)}
+              onMouseLeave={e => setNote(i, false)}
+              key={i}
+            >
+              <button onClick={() => removeNote(i)}>x</button>
+              <textarea />
+            </div>
+          )
+        }
+      </div>
+    </>
   );
 }
