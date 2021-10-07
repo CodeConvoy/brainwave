@@ -2,6 +2,7 @@
   height: 100%;
   overflow: scroll;
   background: #efefef;
+  position: relative;
 }
 
 .toolbar {
@@ -20,13 +21,32 @@
   display: block;
 }
 
-.notes {
+.note {
   position: absolute;
-  inset: 0;
+  background: #efefef;
+  padding: 25px;
+  cursor: move;
+  border-radius: 10px;
 }
 
-.notes > div {
+.note > textarea {
+  resize: none;
+  height: 160px;
+  width: 160px;
+}
+
+.note > button {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  display: flex;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.note > button:hover {
+  background: #ddd;
 }

@@ -7,6 +7,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import CommentIcon from '@mui/icons-material/Comment';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CloseIcon from '@mui/icons-material/Close';
 
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
@@ -279,7 +280,9 @@ export default function Idea() {
               onMouseLeave={e => setNote(i, false)}
               key={i}
             >
-              <button onClick={() => removeNote(i)}>x</button>
+              <button onClick={() => removeNote(i)}>
+                <CloseIcon />
+              </button>
               <textarea />
             </div>
           )
