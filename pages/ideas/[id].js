@@ -167,6 +167,14 @@ export default function Idea() {
     setNotes(newNotes);
   }
 
+  function moveNote(index, e) {
+    const x = e.clientX + container.scrollLeft;
+    const y = e.clientY + container.scrollTop;
+    const target = e.currentTarget;
+    target.style.left = `${x - 20}px`;
+    target.style.top = `${y - 20}px`;
+  }
+
   return (
     <div className={styles.container} ref={containerRef}>
       <div className={styles.toolbar}>
