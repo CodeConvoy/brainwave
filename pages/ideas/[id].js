@@ -253,16 +253,21 @@ export default function Idea() {
         onMouseUp={e => { sketching = false; saveCanvas(); }}
         onMouseLeave={e => { sketching = false; saveCanvas(); }}
       />
-      <div className={styles.notes}>
-        {
-          notes.map((note, i) =>
-            <div key={i}>
-              <button onClick={() => removeNote(i)}>x</button>
-              <textarea />
-            </div>
-          )
-        }
-      </div>
+      {
+        notes.map((note, i) =>
+          <div
+            className={styles.note}
+            onMouseDown={e => setNote(i, true)}
+            onMouseMove={e => { if (notes[i].sketching) moveNote(i, e); }}
+            onMouseUp={e => setNote(i, false)}
+            onMouseLeave={e => setNote(i, false)}
+            key={i}
+          >
+            <button onClick={() => removeNote(i)}>x</button>
+            <textarea />
+          </div>
+        )
+      }
     </div>
   );
 }
