@@ -150,13 +150,20 @@ export default function Idea() {
 
   // creates a blank note on canvas
   function createNote() {
-    notes.push(0);
+    notes.push({ sketching: false });
   }
 
   // removes note at given index
   function removeNote(index) {
     const newNotes = notes.slice();
     newNotes.splice(index, 1);
+    setNotes(newNotes);
+  }
+
+  // sets given note to sketching or not
+  function setNote(index, sketching) {
+    const newNotes = notes.slice();
+    newNotes[index].sketching = sketching;
     setNotes(newNotes);
   }
 
