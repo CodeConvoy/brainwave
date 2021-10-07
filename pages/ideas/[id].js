@@ -1,4 +1,5 @@
 import Loading from '../../components/Loading';
+import Note from '../../components/Note';
 import Link from 'next/link';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
@@ -272,19 +273,7 @@ export default function Idea() {
         />
         {
           notes.map((note, i) =>
-            <div
-              className={styles.note}
-              onMouseDown={e => setNote(i, true)}
-              onMouseMove={e => { if (notes[i].sketching) moveNote(i, e); }}
-              onMouseUp={e => setNote(i, false)}
-              onMouseLeave={e => setNote(i, false)}
-              key={i}
-            >
-              <button onClick={() => removeNote(i)}>
-                <CloseIcon />
-              </button>
-              <textarea />
-            </div>
+            <Note container={container} key={i} />
           )
         }
       </div>
