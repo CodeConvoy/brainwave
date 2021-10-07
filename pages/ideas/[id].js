@@ -162,21 +162,6 @@ export default function Idea() {
     setNotes(newNotes);
   }
 
-  // sets given note to sketching or not
-  function setNote(index, sketching) {
-    const newNotes = notes.slice();
-    newNotes[index].sketching = sketching;
-    setNotes(newNotes);
-  }
-
-  function moveNote(index, e) {
-    const x = e.clientX + container.scrollLeft;
-    const y = e.clientY + container.scrollTop;
-    const target = e.currentTarget;
-    target.style.left = `${x - 20}px`;
-    target.style.top = `${y - 20}px`;
-  }
-
   return (
     <>
       <div className={styles.toolbar}>
