@@ -152,7 +152,7 @@ export default function Idea() {
 
   // creates a blank note on canvas
   function createNote() {
-    notes.push({ sketching: false });
+    notes.push(notes.length);
   }
 
   // removes note at given index
@@ -273,7 +273,11 @@ export default function Idea() {
         />
         {
           notes.map((note, i) =>
-            <Note container={container} key={i} />
+            <Note
+              removeNote={removeNote}
+              index={i}
+              key={i}
+            />
           )
         }
       </div>
