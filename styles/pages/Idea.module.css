@@ -20,33 +20,3 @@
   background: var(--white);
   display: block;
 }
-
-.note {
-  position: absolute;
-  background: #efefef;
-  padding: 25px;
-  cursor: move;
-  border-radius: 10px;
-}
-
-.note > textarea {
-  resize: none;
-  height: 160px;
-  width: 160px;
-}
-
-.note > button {
-  position: absolute;
-  display: flex;
-  top: 0;
-  right: 0;
-  background: transparent;
-  border: 0;
-  padding: 0;
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.note > button:hover {
-  background: #ddd;
-}
