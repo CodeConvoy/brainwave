@@ -22,10 +22,10 @@
   bottom: 0;
   right: 0;
   z-index: 1;
+  cursor: pointer;
 }
 
 .minimap > button {
-  opacity: 0;
   position: absolute;
   height: 24px;
   width: 24px;
@@ -34,7 +34,6 @@
   justify-content: center;
   right: 8px;
   bottom: 8px;
-  z-index: 2;
   border: 2px solid var(--black);
   background: var(--gray);
   border-radius: 50%;
@@ -44,21 +43,11 @@
   background: #bbb;
 }
 
-.minimap > button.open {
-  right: 264px;
-  bottom: 264px;
-}
-
-.minimap:hover > button {
-  opacity: 1;
-}
-
 .minimap > canvas {
   display: block;
   border: 2px solid #000;
   background: var(--white);
   z-index: 1;
-  pointer-events: none;
 }
 
 .container > canvas {

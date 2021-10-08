@@ -308,14 +308,17 @@ export default function Idea() {
         }
       </div>
       <div className={styles.minimap}>
-        <button
-          className={minimapOpen ? styles.open : null}
-          onClick={() => setMinimapOpen(!minimapOpen)}
-        >
-          {minimapOpen ? <RemoveIcon /> : <AddIcon />}
-        </button>
+        {
+          !minimapOpen &&
+          <button
+            onClick={() => setMinimapOpen(true)}
+          >
+            <AddIcon />
+          </button>
+        }
         <canvas
-          style={{ opacity: minimapOpen ? 1 : 0 }}
+          style={minimapOpen ? null : { display: 'none' }}
+          onClick={() => setMinimapOpen(false)}
           ref={miniCanvasRef}
           width={miniWidth}
           height={miniHeight}
