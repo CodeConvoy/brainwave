@@ -38,6 +38,7 @@ const sizes = [1, 2, 3, 4, 5];
 export default function Idea() {
   const containerRef = useRef();
   const canvasRef = useRef();
+  const miniCanvasRef = useRef();
   const db = getFirestore();
   const router = useRouter();
   const auth = getAuth();
@@ -289,6 +290,12 @@ export default function Idea() {
           <Loading />
         }
       </div>
+      <canvas
+        ref={miniCanvasRef}
+        width={miniWidth}
+        height={miniHeight}
+        className={styles.minicanvas}
+      />
       <div className={styles.container} ref={containerRef}>
         <canvas
           ref={canvasRef}

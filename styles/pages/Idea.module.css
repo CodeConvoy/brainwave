@@ -16,6 +16,14 @@
   margin: 5px;
 }
 
+.minicanvas {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  border: 2px solid #000;
+  z-index: 1;
+}
+
 .container > canvas {
   background: var(--white);
   display: block;
