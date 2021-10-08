@@ -28,7 +28,8 @@ let sketching = false;
 let prevX, prevY;
 let currX, currY;
 
-const scrollSpeed = 4;
+const noteOffset = 200;
+
 let notesDirty = false;
 
 const colors = ['black', 'red', 'green', 'blue', 'white'];
@@ -39,6 +40,7 @@ export default function Idea() {
   const canvasRef = useRef();
   const db = getFirestore();
   const router = useRouter();
+  const auth = getAuth();
 
   // get idea id
   const { id } = router.query;
@@ -166,7 +168,11 @@ export default function Idea() {
 
   // creates a blank note on canvas
   function createNote() {
-    notes.push(notes.length);
+    notes.push({
+      x: container.scrollLeft + noteOffset,
+      y: container.scrollTop + noteOffset,
+      text: ''
+    });
   }
 
   // removes note at given index
@@ -299,6 +305,7 @@ export default function Idea() {
               {...note}
               container={container}
               removeNote={removeNote}
+              saveNote={saveNote}
               index={i}
               key={i}
             />

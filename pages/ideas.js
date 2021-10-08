@@ -24,7 +24,11 @@ export default function Home() {
     // create document in firebase
     const now = new Date().getTime();
     const docRef = await addDoc(ideasRef, {
-      title, creator: uid, created: now, modified: now, sketch: null
+      title, creator: uid,
+      created: now,
+      modified: now,
+      sketch: null,
+      notes: []
     });
     // go to idea page
     Router.push(`/ideas/${docRef.id}`);
