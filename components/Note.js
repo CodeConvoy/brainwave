@@ -39,6 +39,13 @@ export default function Note(props) {
     target.style.top = `${y - offsetY}px`;
   }
 
+  // ends dragging
+  function endDrag() {
+    if (!dragging) return;
+    dragging = false;
+    saveNote();
+  }
+
   // set note position on start
   useEffect(() => {
     note = noteRef.current;
@@ -52,8 +59,8 @@ export default function Note(props) {
       className={styles.container}
       onMouseDown={e => { dragging = true; setOffset(e); }}
       onMouseMove={e => { if (dragging) move(e); }}
-      onMouseUp={e => { dragging = false; }}
-      onMouseLeave={e => { dragging = false; }}
+      onMouseUp={endDrag}
+      onMouseLeave={endDrag}
     >
       <button onClick={() => removeNote(index)}>
         <CloseIcon />
