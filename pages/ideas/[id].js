@@ -266,6 +266,7 @@ export default function Idea() {
         {
           notes.map((note, i) =>
             <Note
+              {...note}
               container={container}
               removeNote={removeNote}
               index={i}

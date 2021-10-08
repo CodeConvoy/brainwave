@@ -1,6 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styles from '../styles/components/Note.module.css';
 
@@ -15,6 +15,8 @@ let note;
 
 export default function Note(props) {
   const { index, removeNote, container } = props;
+
+  const [text, setText] = useState(props.text);
 
   const noteRef = useRef();
 
@@ -49,8 +51,8 @@ export default function Note(props) {
   // set note position on start
   useEffect(() => {
     note = noteRef.current;
-    note.style.left = `${createOffset + container.scrollLeft}px`;
-    note.style.top = `${createOffset + container.scrollTop}px`;
+    note.style.left = `${props.x}px`;
+    note.style.top = `${props.y}px`;
   }, []);
 
   return (
@@ -65,7 +67,10 @@ export default function Note(props) {
       <button onClick={() => removeNote(index)}>
         <CloseIcon />
       </button>
-      <textarea />
+      <textarea
+        value={text}
+        onChange={e => setText(e.target.value)}
+      />
     </div>
   );
 }
