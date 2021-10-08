@@ -9,6 +9,8 @@ import CommentIcon from '@mui/icons-material/Comment';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
 
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
@@ -306,10 +308,13 @@ export default function Idea() {
         }
       </div>
       <button
-        className={styles.maptoggle}
+        className={
+          minimapOpen ? `${styles.maptoggle} ${styles.open}` :
+          styles.maptoggle
+        }
         onClick={() => setMinimapOpen(!minimapOpen)}
       >
-        -
+        {minimapOpen ? <RemoveIcon /> : <AddIcon />}
       </button>
       <canvas
         style={{ opacity: minimapOpen ? 1 : 0 }}

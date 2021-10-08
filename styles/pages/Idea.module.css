@@ -18,9 +18,26 @@
 
 .maptoggle {
   position: absolute;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   right: 8px;
   bottom: 8px;
   z-index: 2;
+  border: 2px solid var(--black);
+  background: var(--gray);
+  border-radius: 50%;
+}
+
+.maptoggle:hover {
+  background: #bbb;
+}
+
+.maptoggle.open {
+  right: 264px;
+  bottom: 264px;
 }
 
 .minicanvas {
