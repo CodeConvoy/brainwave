@@ -10,6 +10,7 @@ let offsetX, offsetY;
 
 const holdOffset = 20;
 const createOffset = 200;
+const saveTimeout = 250;
 
 let note;
 
@@ -48,12 +49,29 @@ export default function Note(props) {
     saveNote();
   }
 
+  // saves note
+  function saveNote() {
+    // get note position
+    const x = parseInt(note.style.left);
+    const y = parseInt(note.style.top);
+    // return if note not dirty
+    if (props.x === x && props.y === y && props.text === text) return;
+    // save note
+    props.saveNote({ x, y, text }, index);
+  }
+
   // set note position on start
   useEffect(() => {
     note = noteRef.current;
     note.style.left = `${props.x}px`;
     note.style.top = `${props.y}px`;
   }, []);
+
+  // save note on text change timeout
+  useEffect(() => {
+    const timeout = setTimeout(saveNote, saveTimeout);
+    return () => clearTimeout(timeout);
+  }, [text]);
 
   return (
     <div
