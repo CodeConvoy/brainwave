@@ -16,6 +16,12 @@
   margin: 5px;
 }
 
+.minimap {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 .maptoggle {
   position: absolute;
   height: 24px;

@@ -307,22 +307,24 @@ export default function Idea() {
           <Loading />
         }
       </div>
-      <button
-        className={
-          minimapOpen ? `${styles.maptoggle} ${styles.open}` :
-          styles.maptoggle
-        }
-        onClick={() => setMinimapOpen(!minimapOpen)}
-      >
-        {minimapOpen ? <RemoveIcon /> : <AddIcon />}
-      </button>
-      <canvas
-        style={{ opacity: minimapOpen ? 1 : 0 }}
-        ref={miniCanvasRef}
-        width={miniWidth}
-        height={miniHeight}
-        className={styles.minicanvas}
-      />
+      <div className={styles.minimap}>
+        <button
+          className={
+            minimapOpen ? `${styles.maptoggle} ${styles.open}` :
+            styles.maptoggle
+          }
+          onClick={() => setMinimapOpen(!minimapOpen)}
+        >
+          {minimapOpen ? <RemoveIcon /> : <AddIcon />}
+        </button>
+        <canvas
+          style={{ opacity: minimapOpen ? 1 : 0 }}
+          ref={miniCanvasRef}
+          width={miniWidth}
+          height={miniHeight}
+          className={styles.minicanvas}
+        />
+      </div>
       <div className={styles.container} ref={containerRef}>
         <canvas
           ref={canvasRef}
