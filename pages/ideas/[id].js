@@ -19,8 +19,11 @@ import styles from '../../styles/pages/Idea.module.css';
 
 const canvasWidth = 2048;
 const canvasHeight = 2048;
+const miniWidth = 256;
+const miniHeight = 256;
 
 let canvas, ctx;
+let miniCanvas, miniCtx;
 let container;
 
 let sketching = false;
@@ -76,6 +79,7 @@ export default function Idea() {
       const image = new Image();
       image.onload = () => {
         ctx.drawImage(image, 0, 0);
+        miniCtx.drawImage(image, 0, 0, miniWidth, miniHeight);
         setLoading(false);
       }
       image.src = sketch;
@@ -108,6 +112,8 @@ export default function Idea() {
     // get element references
     canvas = canvasRef.current;
     ctx = canvas.getContext('2d');
+    miniCanvas = miniCanvasRef.current;
+    miniCtx = miniCanvas.getContext('2d');
     container = containerRef.current;
     // set up container wheel listener
     container.addEventListener('wheel', onWheel);
@@ -162,9 +168,16 @@ export default function Idea() {
 
   // saves canvas as data url
   async function saveCanvas() {
+    // save to firebase
     const sketch = canvas.toDataURL();
     const ideaRef = doc(db, 'ideas', id);
     await updateDoc(ideaRef, { sketch });
+    // draw minimap
+    const image = new Image();
+    image.onload = () => {
+      miniCtx.drawImage(image, 0, 0, miniWidth, miniHeight);
+    }
+    image.src = sketch;
   }
 
   // creates a blank note on canvas
