@@ -64,6 +64,8 @@ export default function Idea() {
 
   const [notes, setNotes] = useState([]);
 
+  const [minimapOpen, setMinimapOpen] = useState(true);
+
   // retrieves idea from firebase
   async function getIdea() {
     // get idea data
@@ -303,7 +305,14 @@ export default function Idea() {
           <Loading />
         }
       </div>
+      <button
+        className={styles.maptoggle}
+        onClick={() => setMinimapOpen(!minimapOpen)}
+      >
+        -
+      </button>
       <canvas
+        style={{ opacity: minimapOpen ? 1 : 0 }}
         ref={miniCanvasRef}
         width={miniWidth}
         height={miniHeight}

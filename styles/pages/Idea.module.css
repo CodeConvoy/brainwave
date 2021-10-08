@@ -16,12 +16,20 @@
   margin: 5px;
 }
 
+.maptoggle {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 2;
+}
+
 .minicanvas {
   position: absolute;
   right: 8px;
   bottom: 8px;
   border: 2px solid #000;
   z-index: 1;
+  pointer-events: none;
 }
 
 .container > canvas {
