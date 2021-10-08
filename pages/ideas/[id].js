@@ -29,6 +29,7 @@ let prevX, prevY;
 let currX, currY;
 
 const scrollSpeed = 4;
+let notesDirty = false;
 
 const colors = ['black', 'red', 'green', 'blue', 'white'];
 const sizes = [1, 2, 3, 4, 5];
@@ -170,10 +171,33 @@ export default function Idea() {
 
   // removes note at given index
   function removeNote(index) {
+    notesDirty = true;
     const newNotes = notes.slice();
     newNotes.splice(index, 1);
     setNotes(newNotes);
   }
+
+  // saves note at given index
+  function saveNote(note, index) {
+    notesDirty = true;
+    const newNotes = notes.slice();
+    newNotes.splice(index, 1, note);
+    setNotes(newNotes);
+  }
+
+  // saves notes to firebase
+  async function saveNotes() {
+    const ideaRef = doc(db, 'ideas', id);
+    await updateDoc(ideaRef, { notes });
+  }
+
+  // save notes if dirty
+  useEffect(() => {
+    if (notesDirty) {
+      notesDirty = false;
+      saveNotes();
+    }
+  }, [notes]);
 
   return (
     <>
