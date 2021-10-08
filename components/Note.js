@@ -12,7 +12,7 @@ const createOffset = 200;
 const saveTimeout = 250;
 
 export default function Note(props) {
-  const { index, removeNote, container } = props;
+  const { index, container } = props;
 
   const [text, setText] = useState(props.text);
 
@@ -63,6 +63,12 @@ export default function Note(props) {
     props.saveNote({ x, y, text }, index);
   }
 
+  // removes current note
+  function removeNote() {
+    if (!window.confirm(`Delete note "${text}"?`)) return;
+    props.removeNote(index);
+  }
+
   // on start
   useEffect(() => {
     // get note target
@@ -87,7 +93,7 @@ export default function Note(props) {
       onMouseUp={endDrag}
       onMouseLeave={endDrag}
     >
-      <button onClick={() => removeNote(index)}>
+      <button onClick={removeNote}>
         <CloseIcon />
       </button>
       <textarea
