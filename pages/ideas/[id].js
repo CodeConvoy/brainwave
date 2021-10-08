@@ -309,10 +309,7 @@ export default function Idea() {
       </div>
       <div className={styles.minimap}>
         <button
-          className={
-            minimapOpen ? `${styles.maptoggle} ${styles.open}` :
-            styles.maptoggle
-          }
+          className={minimapOpen ? styles.open : null}
           onClick={() => setMinimapOpen(!minimapOpen)}
         >
           {minimapOpen ? <RemoveIcon /> : <AddIcon />}

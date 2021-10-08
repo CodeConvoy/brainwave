@@ -18,11 +18,14 @@
 
 .minimap {
   position: absolute;
+  margin: 8px;
   bottom: 0;
   right: 0;
+  z-index: 1;
 }
 
-.maptoggle {
+.minimap > button {
+  opacity: 0;
   position: absolute;
   height: 24px;
   width: 24px;
@@ -37,20 +40,23 @@
   border-radius: 50%;
 }
 
-.maptoggle:hover {
+.minimap > button:hover {
   background: #bbb;
 }
 
-.maptoggle.open {
+.minimap > button.open {
   right: 264px;
   bottom: 264px;
 }
 
-.minicanvas {
-  position: absolute;
-  right: 8px;
-  bottom: 8px;
+.minimap:hover > button {
+  opacity: 1;
+}
+
+.minimap > canvas {
+  display: block;
   border: 2px solid #000;
+  background: var(--white);
   z-index: 1;
   pointer-events: none;
 }
