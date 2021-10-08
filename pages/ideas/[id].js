@@ -11,6 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
 
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -41,6 +42,8 @@ export default function Idea() {
   // get idea id
   const { id } = router.query;
 
+  const uid = auth.currentUser?.uid;
+
   const [colorOpen, setColorOpen] = useState(false);
   const [drawColor, setDrawColor] = useState('black');
 
@@ -60,7 +63,10 @@ export default function Idea() {
     const ideaRef = doc(db, 'ideas', id);
     const ideaDoc = await getDoc(ideaRef);
     setIdea({ ...ideaDoc.data(), id: ideaDoc.id });
-    const sketch = ideaDoc.data().sketch;
+    // set idea data
+    const ideaData = ideaDoc.data();
+    setNotes(ideaData.notes);
+    const sketch = ideaData.sketch;
     // if sketch, load image to canvas
     if (sketch) {
       const image = new Image();
@@ -78,8 +84,8 @@ export default function Idea() {
 
   // get idea on start
   useEffect(() => {
-    if (id) getIdea();
-  }, [id]);
+    if (id && uid) getIdea();
+  }, [id, uid]);
 
   // scrolls container by given values
   function scrollContainer(x, y) {
