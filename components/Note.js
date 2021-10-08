@@ -8,11 +8,8 @@ let dragging = false;
 
 let offsetX, offsetY;
 
-const holdOffset = 20;
 const createOffset = 200;
 const saveTimeout = 250;
-
-let note;
 
 export default function Note(props) {
   const { index, removeNote, container } = props;
@@ -23,6 +20,9 @@ export default function Note(props) {
 
   // sets note hold offset
   function setOffset(e) {
+    // get note target
+    const note = noteRef.current;
+    // get note offset
     const x = e.clientX + container.scrollLeft;
     const y = e.clientY + container.scrollTop;
     const noteX = parseInt(note.style.left);
@@ -33,24 +33,27 @@ export default function Note(props) {
 
   // moves note with given mouse data
   function move(e) {
+    // get note target
+    const note = noteRef.current;
     // get mouse position
     const x = e.clientX + container.scrollLeft;
     const y = e.clientY + container.scrollTop;
     // set target position
-    const target = e.currentTarget;
-    target.style.left = `${x - offsetX}px`;
-    target.style.top = `${y - offsetY}px`;
+    note.style.left = `${x - offsetX}px`;
+    note.style.top = `${y - offsetY}px`;
   }
 
   // ends dragging
-  function endDrag() {
+  function endDrag(e) {
     if (!dragging) return;
     dragging = false;
-    saveNote();
+    saveNote(e);
   }
 
   // saves note
   function saveNote() {
+    // get note target
+    const note = noteRef.current;
     // get note position
     const x = parseInt(note.style.left);
     const y = parseInt(note.style.top);
@@ -60,9 +63,11 @@ export default function Note(props) {
     props.saveNote({ x, y, text }, index);
   }
 
-  // set note position on start
+  // on start
   useEffect(() => {
-    note = noteRef.current;
+    // get note target
+    const note = noteRef.current;
+    // set note position
     note.style.left = `${props.x}px`;
     note.style.top = `${props.y}px`;
   }, []);
