@@ -112,6 +112,13 @@ export default function Idea() {
     currY = e.clientY - canvas.offsetTop + container.scrollTop;
   }
 
+  // ends sketching
+  function endSketch() {
+    if (!sketching) return;
+    sketching = false;
+    saveCanvas();
+  }
+
   // draws on canvas with current sketch data
   function draw(e) {
     sketch(e);
@@ -253,8 +260,8 @@ export default function Idea() {
           height={canvasHeight}
           onMouseDown={e => { sketching = true; sketch(e); }}
           onMouseMove={e => { if (sketching) draw(e); }}
-          onMouseUp={e => { sketching = false; saveCanvas(); }}
-          onMouseLeave={e => { sketching = false; saveCanvas(); }}
+          onMouseUp={endSketch}
+          onMouseLeave={endSketch}
         />
         {
           notes.map((note, i) =>
