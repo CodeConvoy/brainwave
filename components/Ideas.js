@@ -1,3 +1,4 @@
+import Modal from './Modal';
 import Loading from './Loading';
 import IdeaCard from '../components/IdeaCard';
 import AddIcon from '@mui/icons-material/Add';
@@ -15,6 +16,8 @@ export default function Ideas() {
   const db = getFirestore();
 
   const [ideas, setIdeas] = useState(undefined);
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   // get ideas query
   const uid = auth.currentUser.uid;
@@ -48,11 +51,16 @@ export default function Ideas() {
           <IdeaCard {...idea} key={i} />
         )
       }
-      <Card className={styles.createcard}>
+      <Card
+        className={styles.createcard}
+        onClick={() => setModalOpen(true)}
+      >
         <CardContent>
           <AddIcon />
         </CardContent>
       </Card>
+      <Modal open={modalOpen} setOpen={setModalOpen}>
+      </Modal>
     </div>
   );
 }
