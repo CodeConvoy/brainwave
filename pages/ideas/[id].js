@@ -234,88 +234,88 @@ export default function Idea() {
     <>
       {
         !loading &&
-      <div className={styles.toolbar}>
-        <SpeedDial
-          ariaLabel="colordial"
-          open={colorOpen}
-          onOpen={() => setColorOpen(true)}
-          onClose={() => setColorOpen(false)}
-          icon={<FiberManualRecordIcon style={{ color: drawColor }} />}
-          direction="down"
-        >
-          {colors.map((color, i) =>
+        <div className={styles.toolbar}>
+          <SpeedDial
+            ariaLabel="colordial"
+            open={colorOpen}
+            onOpen={() => setColorOpen(true)}
+            onClose={() => setColorOpen(false)}
+            icon={<FiberManualRecordIcon style={{ color: drawColor }} />}
+            direction="down"
+          >
+            {colors.map((color, i) =>
+              <SpeedDialAction
+                onClick={() => {
+                  setColorOpen(false);
+                  ctx.strokeStyle = color;
+                  setDrawColor(color);
+                }}
+                icon={<FiberManualRecordIcon style={{ color: color }} />}
+                tooltipTitle={color.charAt(0).toUpperCase() + color.slice(1)}
+                key={i}
+              />
+            )}
+          </SpeedDial>
+          <SpeedDial
+            ariaLabel="sizedial"
+            open={sizeOpen}
+            onOpen={() => setSizeOpen(true)}
+            onClose={() => setSizeOpen(false)}
+            icon={<FiberManualRecordIcon style={{ fontSize: drawSize * 8 }} />}
+            direction="down"
+          >
+            {sizes.map((size, i) =>
+              <SpeedDialAction
+                onClick={() => {
+                  setSizeOpen(false);
+                  ctx.lineWidth = size;
+                  setDrawSize(size);
+                }}
+                icon={<FiberManualRecordIcon style={{ fontSize: size * 8 }} />}
+                tooltipTitle={size}
+                key={i}
+              />
+            )}
+          </SpeedDial>
+          <SpeedDial
+            ariaLabel="actiondial"
+            open={actionOpen}
+            onOpen={() => setActionOpen(true)}
+            onClose={() => setActionOpen(false)}
+            icon={<SpeedDialIcon />}
+            direction="down"
+          >
             <SpeedDialAction
               onClick={() => {
-                setColorOpen(false);
-                ctx.strokeStyle = color;
-                setDrawColor(color);
+                setActionOpen(false);
+                createNote();
               }}
-              icon={<FiberManualRecordIcon style={{ color: color }} />}
-              tooltipTitle={color.charAt(0).toUpperCase() + color.slice(1)}
-              key={i}
+              icon={<CommentIcon />}
+              tooltipTitle="Add Note"
             />
-          )}
-        </SpeedDial>
-        <SpeedDial
-          ariaLabel="sizedial"
-          open={sizeOpen}
-          onOpen={() => setSizeOpen(true)}
-          onClose={() => setSizeOpen(false)}
-          icon={<FiberManualRecordIcon style={{ fontSize: drawSize * 8 }} />}
-          direction="down"
-        >
-          {sizes.map((size, i) =>
             <SpeedDialAction
               onClick={() => {
-                setSizeOpen(false);
-                ctx.lineWidth = size;
-                setDrawSize(size);
+                setActionOpen(false);
+                downloadCanvas();
               }}
-              icon={<FiberManualRecordIcon style={{ fontSize: size * 8 }} />}
-              tooltipTitle={size}
-              key={i}
+              icon={<GetAppIcon />}
+              tooltipTitle="Download"
             />
-          )}
-        </SpeedDial>
-        <SpeedDial
-          ariaLabel="actiondial"
-          open={actionOpen}
-          onOpen={() => setActionOpen(true)}
-          onClose={() => setActionOpen(false)}
-          icon={<SpeedDialIcon />}
-          direction="down"
-        >
-          <SpeedDialAction
-            onClick={() => {
-              setActionOpen(false);
-              createNote();
-            }}
-            icon={<CommentIcon />}
-            tooltipTitle="Add Note"
-          />
-          <SpeedDialAction
-            onClick={() => {
-              setActionOpen(false);
-              downloadCanvas();
-            }}
-            icon={<GetAppIcon />}
-            tooltipTitle="Download"
-          />
-          <SpeedDialAction
-            onClick={() => {
-              setActionOpen(false);
-              if (!window.confirm('Clear canvas?')) return;
-              clearCanvas();
-            }}
-            icon={<DeleteIcon />}
-            tooltipTitle="Clear"
-          />
-        </SpeedDial>
-        {
-          (!idea || loading) &&
-          <Loading />
-        }
-      </div>
+            <SpeedDialAction
+              onClick={() => {
+                setActionOpen(false);
+                if (!window.confirm('Clear canvas?')) return;
+                clearCanvas();
+              }}
+              icon={<DeleteIcon />}
+              tooltipTitle="Clear"
+            />
+          </SpeedDial>
+          {
+            (!idea || loading) &&
+            <Loading />
+          }
+        </div>
       }
       <div className={styles.minimap}>
         {
