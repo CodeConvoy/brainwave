@@ -34,6 +34,7 @@ button {
 }
 
 :root {
+  --lightgray: #fafafa;
   --gray: #eaeef3;
   --blue: #2196f3;
   --purple: #3f51b5;

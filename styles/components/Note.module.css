@@ -1,6 +1,6 @@
 .container {
   position: absolute;
-  background: #efefef;
+  background: var(--gray);
   border-radius: 10px;
 }
 
@@ -28,5 +28,5 @@
 }
 
 .container > button:hover {
-  color: #333;
+  color: var(--blue);
 }

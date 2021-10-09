@@ -1,7 +1,7 @@
 .container {
   height: 100%;
   overflow: scroll;
-  background: #efefef;
+  background: var(--gray);
   position: relative;
 }
 

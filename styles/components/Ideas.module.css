@@ -15,7 +15,7 @@
 }
 
 .createcard:hover {
-  background: #fafafa;
+  background: var(--lightgray);
 }
 
 .createcard svg {
