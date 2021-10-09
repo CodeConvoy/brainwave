@@ -12,7 +12,7 @@ const createOffset = 200;
 const saveTimeout = 250;
 
 export default function Note(props) {
-  const { index, container } = props;
+  const { id, container } = props;
 
   const [text, setText] = useState(props.text);
 
@@ -60,13 +60,13 @@ export default function Note(props) {
     // return if note not dirty
     if (props.x === x && props.y === y && props.text === text) return;
     // save note
-    props.saveNote({ x, y, text }, index);
+    props.saveNote({ x, y, text, id }, id);
   }
 
   // removes current note
   function removeNote() {
     if (!window.confirm(`Delete note "${text}"?`)) return;
-    props.removeNote(index);
+    props.removeNote(id);
   }
 
   // on start

@@ -198,18 +198,20 @@ export default function Idea() {
     setNotes(newNotes);
   }
 
-  // removes note at given index
-  function removeNote(index) {
+  // removes note with given id
+  function removeNote(id) {
     notesDirty = true;
     const newNotes = notes.slice();
+    const index = newNotes.findIndex(note => note.id === id);
     newNotes.splice(index, 1);
     setNotes(newNotes);
   }
 
-  // saves note at given index
-  function saveNote(note, index) {
+  // saves note at given id
+  function saveNote(note, id) {
     notesDirty = true;
     const newNotes = notes.slice();
+    const index = newNotes.findIndex(note => note.id === id);
     newNotes.splice(index, 1, note);
     setNotes(newNotes);
   }
@@ -347,8 +349,7 @@ export default function Idea() {
               container={container}
               removeNote={removeNote}
               saveNote={saveNote}
-              index={i}
-              key={i}
+              key={note.id}
             />
           )
         }
