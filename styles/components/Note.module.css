@@ -1,8 +1,6 @@
 .container {
   position: absolute;
   background: #efefef;
-  padding: 25px;
-  cursor: move;
   border-radius: 10px;
 }
 
@@ -10,6 +8,11 @@
   resize: none;
   height: 160px;
   width: 160px;
+  cursor: move!important;
+  display: block;
+  border: 2px solid var(--black);
+  border-radius: 5px;
+  background: var(--gray);
 }
 
 .container > button {
@@ -25,5 +28,5 @@
 }
 
 .container > button:hover {
-  background: #ddd;
+  color: #333;
 }
