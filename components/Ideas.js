@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import Modal from './Modal';
 import Loading from './Loading';
 import IdeaCard from '../components/IdeaCard';
@@ -7,7 +8,9 @@ import CardContent from '@mui/material/CardContent';
 
 import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, orderBy, collection, query, where, getDocs } from 'firebase/firestore';
+import {
+  getFirestore, orderBy, collection, query, where, getDocs, addDoc
+} from 'firebase/firestore';
 
 import styles from '../styles/components/Ideas.module.css';
 
@@ -25,6 +28,23 @@ export default function Ideas() {
   const ideasQuery = query(
     ideasRef, orderBy('modified', 'desc'), where('creator', '==', uid)
   );
+
+  const [title, setTitle] = useState('');
+
+  // creates a new idea
+  async function createIdea() {
+    // create document in firebase
+    const now = new Date().getTime();
+    const docRef = await addDoc(ideasRef, {
+      title, creator: uid,
+      created: now,
+      modified: now,
+      sketch: null,
+      notes: []
+    });
+    // go to idea page
+    Router.push(`/ideas/${docRef.id}`);
+  }
 
   // retrieves ideas from firebase
   async function getIdeas() {
@@ -60,6 +80,18 @@ export default function Ideas() {
         </CardContent>
       </Card>
       <Modal open={modalOpen} setOpen={setModalOpen}>
+        <form onSubmit={e => {
+          e.preventDefault();
+          createIdea();
+        }}>
+          <input
+            placeholder="title"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            required
+          />
+          <button>Create Idea</button>
+        </form>
       </Modal>
     </div>
   );
