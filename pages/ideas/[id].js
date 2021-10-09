@@ -16,6 +16,7 @@ import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+import { v4 as uuid } from 'uuid';
 
 import styles from '../../styles/pages/Idea.module.css';
 
@@ -186,11 +187,15 @@ export default function Idea() {
 
   // creates a blank note on canvas
   function createNote() {
-    notes.push({
+    notesDirty = true;
+    const newNotes = notes.slice();
+    newNotes.push({
       x: container.scrollLeft + noteOffset,
       y: container.scrollTop + noteOffset,
-      text: ''
+      text: '',
+      id: uuid()
     });
+    setNotes(newNotes);
   }
 
   // removes note at given index
