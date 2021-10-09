@@ -1,0 +1,33 @@
+.modal {
+  text-align: center;
+  background: var(--lightgray);
+  max-width: 400px;
+  color: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--black);
+  border-radius: 10px;
+  padding: 20px 40px;
+  box-shadow: 0 0 10px #111;
+}
+
+.close {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  right: -8px;
+  top: -8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--black);
+  background: var(--lightgray);
+  color: var(--black);
+}
+
+.close:hover {
+  background: var(--gray);
+}
