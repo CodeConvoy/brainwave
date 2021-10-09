@@ -4,3 +4,23 @@
   padding: 10px;
   background: var(--gray);
 }
+
+.createcard {
+  width: 200px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.createcard:hover {
+  background: #fafafa;
+}
+
+.createcard svg {
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
