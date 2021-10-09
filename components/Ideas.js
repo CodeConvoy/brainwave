@@ -1,5 +1,8 @@
 import Loading from './Loading';
 import IdeaCard from '../components/IdeaCard';
+import AddIcon from '@mui/icons-material/Add';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
@@ -45,6 +48,11 @@ export default function Ideas() {
           <IdeaCard {...idea} key={i} />
         )
       }
+      <Card className={styles.createcard}>
+        <CardContent>
+          <AddIcon />
+        </CardContent>
+      </Card>
     </div>
   );
 }
