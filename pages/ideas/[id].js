@@ -232,6 +232,8 @@ export default function Idea() {
 
   return (
     <>
+      {
+        !loading &&
       <div className={styles.toolbar}>
         <SpeedDial
           ariaLabel="colordial"
@@ -314,6 +316,7 @@ export default function Idea() {
           <Loading />
         }
       </div>
+      }
       <div className={styles.minimap}>
         {
           !minimapOpen &&
@@ -324,7 +327,7 @@ export default function Idea() {
           </button>
         }
         <canvas
-          style={minimapOpen ? null : { display: 'none' }}
+          style={(minimapOpen && !loading) ? null : { display: 'none' }}
           onClick={() => setMinimapOpen(false)}
           ref={miniCanvasRef}
           width={miniWidth}
@@ -333,7 +336,9 @@ export default function Idea() {
         />
       </div>
       <div className={styles.container} ref={containerRef}>
+        {loading && <Loading />}
         <canvas
+          style={loading ? { display: 'none' } : null }
           ref={canvasRef}
           width={canvasWidth}
           height={canvasHeight}
