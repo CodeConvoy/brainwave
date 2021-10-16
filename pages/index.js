@@ -1,3 +1,4 @@
+import Header from '../components/Header';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -11,6 +12,7 @@ export default function Index() {
 
   return (
     <div className={styles.container}>
+      <Header />
       <div className={styles.center}>
         <h1><Image src="/logo.png" width="48" height="48" /> BRAINWAVE</h1>
         {

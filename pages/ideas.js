@@ -1,3 +1,4 @@
+import Header from '../components/Header';
 import Loading from '../components/Loading';
 import Ideas from '../components/Ideas';
 import Router from 'next/router';
@@ -19,6 +20,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+      <Header />
       <Ideas />
       <Link href="/">
         <a className="link">Home</a>
