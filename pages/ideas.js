@@ -10,11 +10,17 @@ import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 import styles from '../styles/pages/Ideas.module.css';
 
-export default function Home() {
-  const auth = getAuth();
+export default function Home(props) {
+  const { authed, userData } = props;
 
-  // return if loading
-  if (!auth.currentUser) {
+  // redirect based on auth
+  useEffect(() => {
+    if (authed === false) Router.replace('/');
+    if (userData === null) Router.replace('/setup');
+  }, [authed, userData]);
+
+  // load if no user data
+  if (!userData) {
     return <Loading />;
   }
 
