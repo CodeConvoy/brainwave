@@ -6,19 +6,21 @@ export default function Setup() {
   const [username, setUsername] = useState('');
 
   return (
-    <div>
-      <form onSubmit={e => {
-        e.preventDefault();
-        createUser();
-      }}>
-        <input
-          placeholder="username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          required
-        />
-        <button>Create User</button>
-      </form>
+    <div className={styles.container}>
+      <div className={styles.center}>
+        <form onSubmit={e => {
+          e.preventDefault();
+          createUser();
+        }}>
+          <input
+            placeholder="username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            required
+          />
+          <button>Create User</button>
+        </form>
+      </div>
     </div>
   );
 }
