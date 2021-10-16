@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, doc } from 'firebase/firestore';
-import { useDocumentData } from 'react-firebase9-hooks/firestore';
+import { useDocument } from 'react-firebase9-hooks/firestore';
 
 function MainAuthed(props) {
   const { Component, pageProps } = props;
@@ -9,11 +9,15 @@ function MainAuthed(props) {
   const db = getFirestore();
   const auth = getAuth();
 
-  // get user data
+  // get user doc
   const uid = auth.currentUser.uid;
   const usersRef = collection(db, 'users');
   const userRef = doc(db, 'users', uid);
-  const [userData] = useDocumentData(userRef);
+  const [userDoc] = useDocument(userRef);
+
+  // get user data
+  const userData = !userDoc ? undefined :
+  userDoc.exists() ? userDoc.data() : null;
 
   return <Component authed={true} userData={userData} {...pageProps} />;
 }
