@@ -12,18 +12,13 @@
   align-items: center;
 }
 
-.center > button {
-  padding: 10px 20px;
-  background: transparent;
-  color: var(--black);
-  border: 2px solid var(--black);
-  border-radius: 5px;
-  transition: 0.25s;
+.center > h1 {
+  display: flex;
+  align-items: center;
 }
 
-.center > button:hover {
-  color: var(--blue);
-  border-color: var(--blue);
+.center > h1 > div {
+  margin-right: 10px!important;
 }
 
 .links {

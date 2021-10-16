@@ -7,30 +7,24 @@ import signInWithGoogle from '../util/signInWithGoogle';
 
 import styles from '../styles/pages/Index.module.css';
 
-export default function Index() {
+export default function Index(props) {
+  const { authed, userData } = props;
+
   const auth = getAuth();
 
   return (
     <div className={styles.container}>
-      <Header />
+      <Header userData={userData} />
       <div className={styles.center}>
-        <h1><Image src="/logo.png" width="48" height="48" /> BRAINWAVE</h1>
+        <h1><Image src="/logo.png" width="48" height="48" /> brainwave</h1>
         {
           auth.currentUser ?
-          <button onClick={() => signOut(auth)}>
+          <button className="outlinebtn" onClick={() => signOut(auth)}>
             Sign Out
           </button> :
-          <button onClick={signInWithGoogle}>
+          <button className="outlinebtn" onClick={signInWithGoogle}>
             Sign in with Google
           </button>
-        }
-        {
-          auth.currentUser &&
-          <div className={styles.links}>
-            <Link href="/ideas">
-              <a className="link">Ideas</a>
-            </Link>
-          </div>
         }
       </div>
     </div>
