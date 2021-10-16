@@ -12,6 +12,15 @@
   margin: 0 10px;
 }
 
+.container > a {
+  color: var(--blue);
+  margin-right: 20px;
+}
+
+.container > a:hover {
+  color: var(--purple);
+}
+
 .container > button {
-  margin: 0 10px;
+  margin-right: 10px;
 }

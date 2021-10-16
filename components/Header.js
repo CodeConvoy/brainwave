@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 
 import { getAuth, signOut } from 'firebase/auth';
@@ -23,8 +24,15 @@ export default function Header(props) {
       <h1>brainwave</h1>
       <span className="flexfill" />
       {
-        userData &&
-        <p>Signed in as @{userData.username}</p>
+        auth.currentUser &&
+        <>
+          <Link href="/">
+            <a>Home</a>
+          </Link>
+          <Link href="/ideas">
+            <a>Ideas</a>
+          </Link>
+        </>
       }
       {
         auth.currentUser ?
