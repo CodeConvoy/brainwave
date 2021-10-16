@@ -11,3 +11,7 @@
 .logo {
   margin: 0 10px;
 }
+
+.container > button {
+  margin: 0 10px;
+}
