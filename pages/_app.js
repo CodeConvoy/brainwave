@@ -1,9 +1,8 @@
 import Head from 'next/head';
+import Main from '../components/Main';
 
 import { initializeApp, getApps } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
 import { firebaseConfig } from '../firebaseConfig';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 import '../styles/globals.css';
 
@@ -14,10 +13,6 @@ const description = "Rich and centralized idea development.";
 if (!getApps().length) initializeApp(firebaseConfig);
 
 export default function App(props) {
-  useAuthState(getAuth());
-
-  const { Component, pageProps } = props;
-
   return (
     <>
       <Head>
@@ -28,7 +23,7 @@ export default function App(props) {
         <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet" />
       </Head>
-      <Component {...pageProps} />
+      <Main {...props} />
     </>
   );
 }
