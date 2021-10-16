@@ -15,17 +15,35 @@ export default function Index(props) {
   return (
     <div className={styles.container}>
       <Header userData={userData} />
-      <div className={styles.center}>
-        <h1><Image src="/logo.png" width="48" height="48" /> brainwave</h1>
-        {
-          auth.currentUser ?
-          <button className="outlinebtn" onClick={() => signOut(auth)}>
-            Sign Out
-          </button> :
-          <button className="outlinebtn" onClick={signInWithGoogle}>
-            Sign in with Google
-          </button>
-        }
+      <div className={styles.overview}>
+        <div>
+          <h1>Brainwave</h1>
+          <p>Rich and centralized idea development.</p>
+          {
+            auth.currentUser ?
+            <button className="outlinebtn" onClick={() => signOut(auth)}>
+              Sign Out
+            </button> :
+            <button className="outlinebtn" onClick={signInWithGoogle}>
+              Sign in with Google
+            </button>
+          }
+        </div>
+        <Image
+          src="/img/undraw/creation.svg"
+          width="300"
+          height="300"
+          alt=""
+        />
+      </div>
+      <div className={styles.about}>
+        <p>Brainwave aims to make team brainstorming easier.</p>
+        <Image
+          src="/img/undraw/ideas.svg"
+          width="300"
+          height="300"
+          alt=""
+        />
       </div>
     </div>
   );
