@@ -20,9 +20,7 @@ export default function Home(props) {
   }, [authed, userData]);
 
   // load if no user data
-  if (!userData) {
-    return <Loading />;
-  }
+  if (!userData) return <Loading />;
 
   return (
     <div className={styles.container}>
