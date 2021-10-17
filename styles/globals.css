@@ -6,8 +6,6 @@
 html, body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   height: 100%;
 }
 
@@ -58,4 +56,10 @@ button {
   --purple: #3f51b5;
   --black: #212121;
   --white: #ffffff;
+
+  --main0: #242582;
+  --main1: #2f2fa2;
+  --main2: #553d67;
+  --main3: #99738e;
+  --main4: #f64c72;
 }

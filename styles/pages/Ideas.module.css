@@ -1,3 +1,7 @@
+.container {
+  padding-top: 60px;
+}
+
 .container > form {
   padding: 20px;
 }

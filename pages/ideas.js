@@ -26,9 +26,6 @@ export default function Home(props) {
     <div className={styles.container}>
       <Header userData={userData} />
       <Ideas />
-      <Link href="/">
-        <a className="link">Home</a>
-      </Link>
     </div>
   );
 }

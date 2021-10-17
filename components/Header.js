@@ -21,7 +21,10 @@ export default function Header(props) {
           alt="logo"
         />
       </div>
-      <h1>brainwave</h1>
+      <h1>
+        brain
+        <span style={{ color: 'var(--blue)' }}>wave</span>
+      </h1>
       <span className="flexfill" />
       {
         auth.currentUser &&
