@@ -25,7 +25,9 @@ export default function Ideas() {
   const uid = auth.currentUser.uid;
   const ideasRef = collection(db, 'ideas');
   const ideasQuery = query(
-    ideasRef, orderBy('modified', 'desc'), where('creator', '==', uid)
+    ideasRef,
+    orderBy('modified', 'desc'),
+    where('members', 'array-contains', uid)
   );
   const [ideas] = useCollectionData(ideasQuery, { idField: 'id' });
 
@@ -36,7 +38,9 @@ export default function Ideas() {
     // create document in firebase
     const now = new Date().getTime();
     const docRef = await addDoc(ideasRef, {
-      title, creator: uid,
+      title: title,
+      creator: uid,
+      members: [uid],
       created: now,
       modified: now,
       sketch: null,

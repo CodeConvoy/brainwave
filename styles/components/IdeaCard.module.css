@@ -24,3 +24,7 @@
 .container:hover .editbutton {
   opacity: 1;
 }
+
+.modal {
+  text-align: center;
+}

@@ -26,7 +26,11 @@ export default function Setup(props) {
   // attempts to create user
   async function createUser() {
     const uid = auth.currentUser.uid;
-    setDoc(doc(usersRef, uid), { username });
+    setDoc(doc(usersRef, uid), {
+      username: username,
+      usernameLower: username.toLowerCase(),
+      uid: uid
+    });
   }
 
   // load if user data not null
