@@ -2,6 +2,7 @@ import Modal from './Modal';
 import Loading from './Loading';
 import Router from 'next/router';
 import EditIcon from '@mui/icons-material/Edit';
+import GroupIcon from '@mui/icons-material/Group';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -26,6 +27,7 @@ export default function IdeaCard(props) {
 
   const ideaDoc = doc(db, 'ideas', id);
 
+  const [tab, setTab] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [username, setUsername] = useState('');
@@ -105,22 +107,17 @@ export default function IdeaCard(props) {
       </Card>
       <Modal open={modalOpen} setOpen={setModalOpen}>
         <h1>Editing {title}</h1>
-        <form onSubmit={e => {
-          e.preventDefault();
-          updateIdea();
-        }}>
-          <div className="input-button">
-            <input
-              placeholder="title"
-              value={newTitle}
-              onChange={e => setNewTitle(e.target.value)}
-              required
-            />
-            <button>
-              <AddIcon />
-            </button>
-          </div>
-        </form>
+        <div className={styles.tabs}>
+          <button onClick={() => setTab(0)}>
+            <EditIcon />
+          </button>
+          <button onClick={() => setTab(1)}>
+            <GroupIcon />
+          </button>
+          <button onClick={deleteIdea}>
+            <DeleteIcon />
+          </button>
+        </div>
         {
           tab === 0 &&
           <div>
