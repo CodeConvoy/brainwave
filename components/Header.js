@@ -15,7 +15,7 @@ export default function Header(props) {
     <div className={styles.container}>
       <div className={styles.logo}>
         <Image
-          src="/logo.png"
+          src="/img/logo.png"
           width="48"
           height="48"
           alt="logo"

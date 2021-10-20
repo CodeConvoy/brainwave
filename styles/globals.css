@@ -34,8 +34,8 @@ button {
 .outlinebtn {
   padding: 10px 20px;
   background: transparent;
-  color: var(--black);
-  border: 2px solid var(--black);
+  color: var(--darkgray);
+  border: 2px solid var(--darkgray);
   border-radius: 5px;
   transition: 0.25s;
 }
@@ -52,6 +52,7 @@ button {
 :root {
   --lightgray: #fafafa;
   --gray: #eaeef3;
+  --darkgray: #666666;
   --blue: #2196f3;
   --purple: #3f51b5;
   --black: #212121;

@@ -6,6 +6,9 @@
   background: var(--white);
   color: var(--black);
   box-shadow: 0 0 10px var(--black);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .logo {
@@ -13,12 +16,13 @@
 }
 
 .container > a {
-  color: var(--blue);
+  color: var(--darkgray);
   margin-right: 20px;
+  transition: 0.25s;
 }
 
 .container > a:hover {
-  color: var(--purple);
+  color: var(--blue);
 }
 
 .container > button {
