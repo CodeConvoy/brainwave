@@ -80,17 +80,22 @@ export default function Ideas() {
         </CardContent>
       </Card>
       <Modal open={modalOpen} setOpen={setModalOpen}>
+        <h1>New Idea</h1>
         <form onSubmit={e => {
           e.preventDefault();
           createIdea();
         }}>
-          <input
-            placeholder="title"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            required
-          />
-          <button>Create Idea</button>
+          <div className="input-button">
+            <input
+              placeholder="title"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              required
+            />
+            <button>
+              <AddIcon />
+            </button>
+          </div>
         </form>
       </Modal>
     </div>
