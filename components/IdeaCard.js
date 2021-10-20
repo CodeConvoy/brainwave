@@ -122,57 +122,80 @@ export default function IdeaCard(props) {
           </div>
         </form>
         {
-          members.map(mUid =>
-            <div key={mUid}>
-              {
-                mUid !== creator &&
-                <button onClick={() => removeMember(mUid)}>
-                  <DeleteIcon />
+          tab === 0 &&
+          <div>
+            <form onSubmit={e => {
+              e.preventDefault();
+              updateIdea();
+            }}>
+              <div className="input-button">
+                <input
+                  placeholder="title"
+                  value={newTitle}
+                  onChange={e => setNewTitle(e.target.value)}
+                  required
+                />
+                <button>
+                  <AddIcon />
                 </button>
-              }
-              <span>{mUid}</span>
-            </div>
-          )
-        }
-        <form onSubmit={e => {
-          e.preventDefault();
-          searchUsers();
-        }}>
-          <div className="input-button">
-            <input
-              placeholder="username"
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-              required
-            />
-            <button>
-              <SearchIcon />
-            </button>
-          </div>
-        </form>
-        {
-          foundUsers === undefined ?
-          <Loading /> :
-          foundUsers &&
-          (
-            foundUsers.length ?
-            foundUsers.map(user =>
-              <div key={user.uid}>
-                {
-                  !members.includes(user.uid) &&
-                  <button onClick={() => addMember(user.uid)}>
-                    <AddIcon />
-                  </button>
-                }
-                <span>{user.username}</span>
               </div>
-            ) :
-            <div>No users found</div>
-          )
+            </form>
+          </div>
         }
-        <button onClick={deleteIdea}>
-          <DeleteIcon />
-        </button>
+        {
+          tab === 1 &&
+          <div>
+            {
+              members.map(mUid =>
+                <div key={mUid}>
+                  {
+                    mUid !== creator &&
+                    <button onClick={() => removeMember(mUid)}>
+                      <DeleteIcon />
+                    </button>
+                  }
+                  <span>{mUid}</span>
+                </div>
+              )
+            }
+            <form onSubmit={e => {
+              e.preventDefault();
+              searchUsers();
+            }}>
+              <div className="input-button">
+                <input
+                  placeholder="username"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+                  required
+                />
+                <button>
+                  <SearchIcon />
+                </button>
+              </div>
+            </form>
+            {
+              foundUsers === undefined ?
+              <Loading /> :
+              foundUsers &&
+              (
+                foundUsers.length ?
+                foundUsers.map(user =>
+                  <div key={user.uid}>
+                    {
+                      !members.includes(user.uid) &&
+                      <button onClick={() => addMember(user.uid)}>
+                        <AddIcon />
+                      </button>
+                    }
+                    <span>{user.username}</span>
+                  </div>
+                ) :
+                <div>No users found</div>
+              )
+            }
+          </div>
+        }
       </Modal>
     </>
   );
