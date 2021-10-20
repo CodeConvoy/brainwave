@@ -44,6 +44,22 @@ export default function IdeaCard(props) {
       </Card>
       <Modal open={modalOpen} setOpen={setModalOpen}>
         <h1>Editing {title}</h1>
+        <form onSubmit={e => {
+          e.preventDefault();
+          updateIdea();
+        }}>
+          <div className="input-button">
+            <input
+              placeholder="title"
+              value={newTitle}
+              onChange={e => setNewTitle(e.target.value)}
+              required
+            />
+            <button>
+              <AddIcon />
+            </button>
+          </div>
+        </form>
         <button onClick={deleteIdea}>
           <DeleteIcon />
         </button>
