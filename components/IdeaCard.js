@@ -1,20 +1,23 @@
 import Modal from './Modal';
+import Loading from './Loading';
 import Router from 'next/router';
 import EditIcon from '@mui/icons-material/Edit';
+import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
 import {
-  getFirestore, doc, deleteDoc, updateDoc, arrayUnion
+  getFirestore, doc, deleteDoc, updateDoc, arrayUnion,
+  collection, query, where, limit, getDocs
 } from 'firebase/firestore';
 import { useState } from 'react';
 
 import styles from '../styles/components/IdeaCard.module.css';
 
 export default function IdeaCard(props) {
-  const { title, id } = props;
+  const { id, title, members } = props;
 
   const db = getFirestore();
 
@@ -57,6 +60,11 @@ export default function IdeaCard(props) {
     setFoundUsers(users.docs.map(doc => doc.data()));
   }
 
+  // resets modal
+  function resetModal() {
+    setFoundUsers(null);
+    setNewTitle(title);
+    setUsername('');
   }
 
   return (
@@ -70,6 +78,7 @@ export default function IdeaCard(props) {
             className={styles.editbutton}
             onClick={e => {
               e.stopPropagation();
+              resetModal();
               setModalOpen(true);
             }}
           >
