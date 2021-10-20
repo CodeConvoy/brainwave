@@ -22,7 +22,8 @@ export default function IdeaCard(props) {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
-  const [newUid, setNewUid] = useState('');
+  const [username, setUsername] = useState('');
+  const [foundUsers, setFoundUsers] = useState(null);
 
   // updates idea in firebase
   async function updateIdea() {
@@ -95,19 +96,33 @@ export default function IdeaCard(props) {
             </button>
           </div>
         </form>
+        {
+          foundUsers === undefined ?
+          <Loading /> :
+          foundUsers &&
+          (
+            foundUsers.length ?
+            foundUsers.map(user =>
+              <div key={user.uid}>
+                {user.username}
+              </div>
+            ) :
+            <div>No users found</div>
+          )
+        }
         <form onSubmit={e => {
           e.preventDefault();
           searchMembers();
         }}>
           <div className="input-button">
             <input
-              placeholder="uid"
-              value={newUid}
-              onChange={e => setNewUid(e.target.value)}
+              placeholder="username"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
               required
             />
             <button>
-              <AddIcon />
+              <SearchIcon />
             </button>
           </div>
         </form>
