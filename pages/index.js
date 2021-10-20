@@ -39,7 +39,25 @@ export default function Index(props) {
       <div className={styles.about}>
         <p>Brainwave aims to make team brainstorming easier.</p>
         <Image
-          src="/img/undraw/ideas.svg"
+          src="/img/undraw/notes.svg"
+          width="300"
+          height="300"
+          alt=""
+        />
+        <Image
+          src="/img/undraw/idea.svg"
+          width="300"
+          height="300"
+          alt=""
+        />
+        <Image
+          src="/img/undraw/draw.svg"
+          width="300"
+          height="300"
+          alt=""
+        />
+        <Image
+          src="/img/undraw/organize.svg"
           width="300"
           height="300"
           alt=""
