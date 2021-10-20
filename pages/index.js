@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import Header from '../components/Header';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -21,10 +22,16 @@ export default function Index(props) {
           <p>Rich and centralized idea development.</p>
           {
             auth.currentUser ?
-            <button className="outlinebtn" onClick={() => signOut(auth)}>
-              Sign Out
+            <button
+              className="outlinebtn"
+              onClick={() => Router.push('/ideas')}
+            >
+              Ideas
             </button> :
-            <button className="outlinebtn" onClick={signInWithGoogle}>
+            <button
+              className="outlinebtn"
+              onClick={signInWithGoogle}
+            >
               Sign in with Google
             </button>
           }

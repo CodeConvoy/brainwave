@@ -28,3 +28,12 @@
 .modal {
   text-align: center;
 }
+
+.tabs {
+  display: flex;
+  justify-content: center;
+}
+
+.tabs > button {
+  margin: 0 5px;
+}

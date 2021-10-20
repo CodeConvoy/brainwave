@@ -51,17 +51,12 @@ button {
 
 .input-button {
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .input-button > input {
   margin: 5px;
-}
-
-.input-button > button {
-  padding: 0;
-  width: 32px;
-  height: 32px;
 }
 
 :root {
