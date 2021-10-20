@@ -1,8 +1,10 @@
 .container {
   display: flex;
+  align-items: flex-start;
   flex-wrap: wrap;
   padding: 10px;
   background: var(--gray);
+  height: calc(100% - 80px);
 }
 
 .createcard {
@@ -23,4 +25,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--darkgray);
 }
