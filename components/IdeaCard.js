@@ -1,5 +1,6 @@
 import Modal from './Modal';
 import Loading from './Loading';
+import IconButton from './IconButton';
 import Router from 'next/router';
 import EditIcon from '@mui/icons-material/Edit';
 import GroupIcon from '@mui/icons-material/Group';
@@ -108,15 +109,15 @@ export default function IdeaCard(props) {
       <Modal open={modalOpen} setOpen={setModalOpen}>
         <h1>Editing {title}</h1>
         <div className={styles.tabs}>
-          <button onClick={() => setTab(0)}>
+          <IconButton onClick={() => setTab(0)}>
             <EditIcon />
-          </button>
-          <button onClick={() => setTab(1)}>
+          </IconButton>
+          <IconButton onClick={() => setTab(1)}>
             <GroupIcon />
-          </button>
-          <button onClick={deleteIdea}>
+          </IconButton>
+          <IconButton onClick={deleteIdea}>
             <DeleteIcon />
-          </button>
+          </IconButton>
         </div>
         {
           tab === 0 &&
@@ -132,9 +133,9 @@ export default function IdeaCard(props) {
                   onChange={e => setNewTitle(e.target.value)}
                   required
                 />
-                <button>
+                <IconButton>
                   <AddIcon />
-                </button>
+                </IconButton>
               </div>
             </form>
           </div>
@@ -147,9 +148,9 @@ export default function IdeaCard(props) {
                 <div key={mUid}>
                   {
                     mUid !== creator &&
-                    <button onClick={() => removeMember(mUid)}>
+                    <IconButton onClick={() => removeMember(mUid)}>
                       <DeleteIcon />
-                    </button>
+                    </IconButton>
                   }
                   <span>{mUid}</span>
                 </div>
@@ -166,9 +167,9 @@ export default function IdeaCard(props) {
                   onChange={e => setUsername(e.target.value)}
                   required
                 />
-                <button>
+                <IconButton>
                   <SearchIcon />
-                </button>
+                </IconButton>
               </div>
             </form>
             {
@@ -181,9 +182,9 @@ export default function IdeaCard(props) {
                   <div key={user.uid}>
                     {
                       !members.includes(user.uid) &&
-                      <button onClick={() => addMember(user.uid)}>
+                      <IconButton onClick={() => addMember(user.uid)}>
                         <AddIcon />
-                      </button>
+                      </IconButton>
                     }
                     <span>{user.username}</span>
                   </div>
