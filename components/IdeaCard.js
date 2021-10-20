@@ -6,7 +6,9 @@ import AddIcon from '@mui/icons-material/Add';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
-import { getFirestore, doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import {
+  getFirestore, doc, deleteDoc, updateDoc, arrayUnion
+} from 'firebase/firestore';
 import { useState } from 'react';
 
 import styles from '../styles/components/IdeaCard.module.css';
@@ -20,6 +22,7 @@ export default function IdeaCard(props) {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
+  const [newUid, setNewUid] = useState('');
 
   // updates idea in firebase
   async function updateIdea() {
@@ -32,6 +35,13 @@ export default function IdeaCard(props) {
   async function deleteIdea() {
     if (!window.confirm('Delete idea?')) return;
     await deleteDoc(ideaDoc);
+  }
+
+  // adds user as collaborator
+  async function addMember() {
+    await updateDoc(ideaDoc, {
+      members: arrayUnion(newUid)
+    });
   }
 
   return (
