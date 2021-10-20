@@ -11,14 +11,13 @@ import { getAuth } from 'firebase/auth';
 import {
   getFirestore, orderBy, collection, query, where, getDocs, addDoc
 } from 'firebase/firestore';
+import { useCollectionData } from 'react-firebase9-hooks/firestore';
 
 import styles from '../styles/components/Ideas.module.css';
 
 export default function Ideas() {
   const auth = getAuth();
   const db = getFirestore();
-
-  const [ideas, setIdeas] = useState(undefined);
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -28,6 +27,7 @@ export default function Ideas() {
   const ideasQuery = query(
     ideasRef, orderBy('modified', 'desc'), where('creator', '==', uid)
   );
+  const [ideas] = useCollectionData(ideasQuery, { idField: 'id' });
 
   const [title, setTitle] = useState('');
 
@@ -45,17 +45,6 @@ export default function Ideas() {
     // go to idea page
     Router.push(`/ideas/${docRef.id}`);
   }
-
-  // retrieves ideas from firebase
-  async function getIdeas() {
-    const ideasDocs = (await getDocs(ideasQuery)).docs;
-    setIdeas(ideasDocs.map(ideaDoc => ({ ...ideaDoc.data(), id: ideaDoc.id })));
-  }
-
-  // get ideas on start
-  useEffect(() => {
-    getIdeas();
-  }, [uid]);
 
   // return if loading
   if (!ideas) {
