@@ -8,8 +8,9 @@ import AddIcon from '@mui/icons-material/Add';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
+import { getAuth } from 'firebase/auth';
 import {
-  getFirestore, doc, deleteDoc, updateDoc, arrayUnion,
+  getFirestore, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove,
   collection, query, where, limit, getDocs
 } from 'firebase/firestore';
 import { useState } from 'react';
@@ -58,6 +59,8 @@ export default function IdeaCard(props) {
     });
   }
 
+  // searches users with given username
+  async function searchUsers() {
     setFoundUsers(undefined);
     const usersRef = collection(db, 'users');
     const usersQuery = query(
@@ -84,16 +87,19 @@ export default function IdeaCard(props) {
         onClick={() => Router.push(`ideas/${id}`)}
       >
         <CardContent>
-          <button
-            className={styles.editbutton}
-            onClick={e => {
-              e.stopPropagation();
-              resetModal();
-              setModalOpen(true);
-            }}
-          >
-            <EditIcon />
-          </button>
+          {
+            uid === creator &&
+            <button
+              className={styles.editbutton}
+              onClick={e => {
+                e.stopPropagation();
+                resetModal();
+                setModalOpen(true);
+              }}
+            >
+              <EditIcon />
+            </button>
+          }
           <p>{title}</p>
         </CardContent>
       </Card>
@@ -130,7 +136,7 @@ export default function IdeaCard(props) {
         }
         <form onSubmit={e => {
           e.preventDefault();
-          searchMembers();
+          searchUsers();
         }}>
           <div className="input-button">
             <input
