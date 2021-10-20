@@ -9,19 +9,21 @@ export default function IdeaCard(props) {
   const { title, id } = props;
 
   return (
-    <Card
-      className={styles.container}
-      onClick={() => Router.push(`ideas/${id}`)}
-    >
-      <CardContent>
-        <button
-          className={styles.editbutton}
-          onClick={e => e.stopPropagation()}
-        >
-          <EditIcon />
-        </button>
-        <p>{title}</p>
-      </CardContent>
-    </Card>
+    <>
+      <Card
+        className={styles.container}
+        onClick={() => Router.push(`ideas/${id}`)}
+      >
+        <CardContent>
+          <button
+            className={styles.editbutton}
+            onClick={e => e.stopPropagation()}
+          >
+            <EditIcon />
+          </button>
+          <p>{title}</p>
+        </CardContent>
+      </Card>
+    </>
   );
 }
