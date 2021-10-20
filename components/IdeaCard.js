@@ -46,8 +46,15 @@ export default function IdeaCard(props) {
     await updateDoc(ideaDoc, {
       members: arrayUnion(newUid)
     });
-  // searches members with given username
-  async function searchMembers() {
+
+  // removes given user from group
+  async function removeMember(mUid) {
+    if (!window.confirm(`Remove ${mUid} from ${title}?`)) return;
+    await updateDoc(ideaDoc, {
+      members: arrayRemove(mUid)
+    });
+  }
+
     setFoundUsers(undefined);
     const usersRef = collection(db, 'users');
     const usersQuery = query(
@@ -108,6 +115,12 @@ export default function IdeaCard(props) {
         {
           members.map(mUid =>
             <div key={mUid}>
+              {
+                mUid !== creator &&
+                <button onClick={() => removeMember(mUid)}>
+                  <DeleteIcon />
+                </button>
+              }
               <span>{mUid}</span>
             </div>
           )
