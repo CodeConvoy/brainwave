@@ -42,6 +42,20 @@ export default function IdeaCard(props) {
     await updateDoc(ideaDoc, {
       members: arrayUnion(newUid)
     });
+  // searches members with given username
+  async function searchMembers() {
+    setFoundUsers(undefined);
+    const usersRef = collection(db, 'users');
+    const usersQuery = query(
+      usersRef,
+      where('usernameLower', '>=', username.toLowerCase()),
+      where('usernameLower', '<', `${username.toLowerCase()}~`),
+      limit(10)
+    );
+    const users = await getDocs(usersQuery);
+    setFoundUsers(users.docs.map(doc => doc.data()));
+  }
+
   }
 
   return (
@@ -83,7 +97,7 @@ export default function IdeaCard(props) {
         </form>
         <form onSubmit={e => {
           e.preventDefault();
-          addMember();
+          searchMembers();
         }}>
           <div className="input-button">
             <input
