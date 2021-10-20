@@ -71,6 +71,22 @@ export default function IdeaCard(props) {
             </button>
           </div>
         </form>
+        <form onSubmit={e => {
+          e.preventDefault();
+          addMember();
+        }}>
+          <div className="input-button">
+            <input
+              placeholder="uid"
+              value={newUid}
+              onChange={e => setNewUid(e.target.value)}
+              required
+            />
+            <button>
+              <AddIcon />
+            </button>
+          </div>
+        </form>
         <button onClick={deleteIdea}>
           <DeleteIcon />
         </button>
