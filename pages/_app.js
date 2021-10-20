@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Main from '../components/Main';
 
 import { initializeApp, getApps } from 'firebase/app';
-import { firebaseConfig } from '../firebaseConfig';
+import { firebaseConfig } from '../util/firebaseConfig';
 
 import '../styles/globals.css';
 
