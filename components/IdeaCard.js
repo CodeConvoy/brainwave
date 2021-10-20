@@ -1,4 +1,5 @@
 import Router from 'next/router';
+import EditIcon from '@mui/icons-material/Edit';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
@@ -13,6 +14,12 @@ export default function IdeaCard(props) {
       onClick={() => Router.push(`ideas/${id}`)}
     >
       <CardContent>
+        <button
+          className={styles.editbutton}
+          onClick={e => e.stopPropagation()}
+        >
+          <EditIcon />
+        </button>
         <p>{title}</p>
       </CardContent>
     </Card>

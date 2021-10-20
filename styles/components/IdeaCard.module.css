@@ -2,8 +2,25 @@
   width: 200px;
   margin: 10px;
   cursor: pointer;
+  position: relative;
 }
 
 .container:hover > div {
   background: var(--lightgray);
+}
+
+.editbutton {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.container:hover .editbutton {
+  opacity: 1;
 }
