@@ -37,3 +37,13 @@
 .tabs > button {
   margin: 0 5px;
 }
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user > button {
+  margin-left: 5px;
+}

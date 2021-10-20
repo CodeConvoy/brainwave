@@ -7,6 +7,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
@@ -145,14 +146,14 @@ export default function IdeaCard(props) {
           <div>
             {
               members.map(mUid =>
-                <div key={mUid}>
+                <div className={styles.user} key={mUid}>
+                  <span>{mUid}</span>
                   {
                     mUid !== creator &&
                     <IconButton onClick={() => removeMember(mUid)}>
-                      <DeleteIcon />
+                      <RemoveIcon />
                     </IconButton>
                   }
-                  <span>{mUid}</span>
                 </div>
               )
             }
@@ -179,14 +180,14 @@ export default function IdeaCard(props) {
               (
                 foundUsers.length ?
                 foundUsers.map(user =>
-                  <div key={user.uid}>
+                  <div className={styles.user} key={user.uid}>
+                    <span>{user.username}</span>
                     {
                       !members.includes(user.uid) &&
                       <IconButton onClick={() => addMember(user.uid)}>
                         <AddIcon />
                       </IconButton>
                     }
-                    <span>{user.username}</span>
                   </div>
                 ) :
                 <div>No users found</div>
