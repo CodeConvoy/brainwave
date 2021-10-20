@@ -12,6 +12,12 @@
   margin: 5px;
 }
 
+.toolbar > button {
+  z-index: 1;
+  height: 32px;
+  width: 32px;
+}
+
 .toolbar > div {
   margin: 5px;
 }
