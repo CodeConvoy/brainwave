@@ -1,6 +1,7 @@
 .container {
   width: 200px;
   margin: 10px;
+  cursor: pointer;
 }
 
 .container:hover > div {

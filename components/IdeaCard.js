@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Router from 'next/router';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
@@ -8,14 +8,13 @@ export default function IdeaCard(props) {
   const { title, id } = props;
 
   return (
-    <Link href={`/ideas/${id}`}>
-      <a className={styles.container}>
-        <Card>
-          <CardContent>
-            <p>{title}</p>
-          </CardContent>
-        </Card>
-      </a>
-    </Link>
+    <Card
+      className={styles.container}
+      onClick={() => Router.push(`ideas/${id}`)}
+    >
+      <CardContent>
+        <p>{title}</p>
+      </CardContent>
+    </Card>
   );
 }
