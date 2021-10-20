@@ -17,9 +17,11 @@ import { useState } from 'react';
 import styles from '../styles/components/IdeaCard.module.css';
 
 export default function IdeaCard(props) {
-  const { id, title, members } = props;
+  const { id, title, members, creator } = props;
 
   const db = getFirestore();
+  const auth = getAuth();
+  const uid = auth.currentUser.uid;
 
   const ideaDoc = doc(db, 'ideas', id);
 
@@ -41,13 +43,14 @@ export default function IdeaCard(props) {
     await deleteDoc(ideaDoc);
   }
 
-  // adds user as collaborator
-  async function addMember() {
+  // adds given user to idea
+  async function addMember(mUid) {
     await updateDoc(ideaDoc, {
-      members: arrayUnion(newUid)
+      members: arrayUnion(mUid)
     });
+  }
 
-  // removes given user from group
+  // removes given user from idea
   async function removeMember(mUid) {
     if (!window.confirm(`Remove ${mUid} from ${title}?`)) return;
     await updateDoc(ideaDoc, {
@@ -149,7 +152,13 @@ export default function IdeaCard(props) {
             foundUsers.length ?
             foundUsers.map(user =>
               <div key={user.uid}>
-                {user.username}
+                {
+                  !members.includes(user.uid) &&
+                  <button onClick={() => addMember(user.uid)}>
+                    <AddIcon />
+                  </button>
+                }
+                <span>{user.username}</span>
               </div>
             ) :
             <div>No users found</div>
