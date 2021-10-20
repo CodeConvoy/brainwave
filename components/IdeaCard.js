@@ -106,17 +106,10 @@ export default function IdeaCard(props) {
           </div>
         </form>
         {
-          foundUsers === undefined ?
-          <Loading /> :
-          foundUsers &&
-          (
-            foundUsers.length ?
-            foundUsers.map(user =>
-              <div key={user.uid}>
-                {user.username}
-              </div>
-            ) :
-            <div>No users found</div>
+          members.map(mUid =>
+            <div key={mUid}>
+              <span>{mUid}</span>
+            </div>
           )
         }
         <form onSubmit={e => {
@@ -135,6 +128,20 @@ export default function IdeaCard(props) {
             </button>
           </div>
         </form>
+        {
+          foundUsers === undefined ?
+          <Loading /> :
+          foundUsers &&
+          (
+            foundUsers.length ?
+            foundUsers.map(user =>
+              <div key={user.uid}>
+                {user.username}
+              </div>
+            ) :
+            <div>No users found</div>
+          )
+        }
         <button onClick={deleteIdea}>
           <DeleteIcon />
         </button>
