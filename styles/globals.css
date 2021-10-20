@@ -34,8 +34,8 @@ button {
 .outlinebtn {
   padding: 10px 20px;
   background: transparent;
-  color: var(--darkgray);
-  border: 2px solid var(--darkgray);
+  color: #666;
+  border: 2px solid #666;
   border-radius: 5px;
   transition: 0.25s;
 }
@@ -49,10 +49,24 @@ button {
   flex-grow: 1;
 }
 
+.input-button {
+  display: flex;
+  align-items: center;
+}
+
+.input-button > input {
+  margin: 5px;
+}
+
+.input-button > button {
+  padding: 0;
+  width: 32px;
+  height: 32px;
+}
+
 :root {
   --lightgray: #fafafa;
   --gray: #eaeef3;
-  --darkgray: #666666;
   --blue: #2196f3;
   --purple: #3f51b5;
   --black: #212121;
