@@ -13,27 +13,31 @@ export default function Header(props) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>
-        <Image
-          src="/img/logo.png"
-          width="48"
-          height="48"
-          alt="logo"
-        />
-      </div>
-      <h1>
-        brain
-        <span style={{ color: 'var(--blue)' }}>wave</span>
-      </h1>
+      <Link href="/">
+        <a className={styles.logo}>
+          <div>
+            <Image
+              src="/img/logo.png"
+              width="48"
+              height="48"
+              alt="logo"
+            />
+          </div>
+          <h1>
+            brain
+            <span style={{ color: 'var(--blue)' }}>wave</span>
+          </h1>
+        </a>
+      </Link>
       <span className="flexfill" />
       {
         auth.currentUser &&
         <>
           <Link href="/">
-            <a>Home</a>
+            <a className={styles.link}>Home</a>
           </Link>
           <Link href="/ideas">
-            <a>Ideas</a>
+            <a className={styles.link}>Ideas</a>
           </Link>
         </>
       }
