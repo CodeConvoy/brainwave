@@ -7,19 +7,35 @@
 
 .toolbar {
   position: absolute;
+  left: 0;
+  right: 0;
   display: flex;
   pointer-events: none;
   margin: 5px;
 }
 
-.toolbar > button {
-  z-index: 1;
-  height: 32px;
-  width: 32px;
-}
-
 .toolbar > div {
   margin: 5px;
+}
+
+.homebutton {
+  width: 56px;
+  height: 56px;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 5px #000;
+  pointer-events: all;
+  margin: 5px;
+}
+
+.homebutton:hover {
+  background: #ddd;
 }
 
 .minimap {

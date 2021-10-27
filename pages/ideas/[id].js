@@ -1,7 +1,9 @@
 import Loading from '../../components/Loading';
 import Note from '../../components/Note';
 import Link from 'next/link';
+import Router from 'next/router';
 import MapIcon from '@mui/icons-material/Map';
+import HomeIcon from '@mui/icons-material/Home';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
@@ -312,10 +314,13 @@ export default function Idea() {
               tooltipTitle="Clear"
             />
           </SpeedDial>
-          {
-            (!idea || loading) &&
-            <Loading />
-          }
+          <span className="flexfill" />
+          <button
+            onClick={() => Router.push('/ideas')}
+            className={styles.homebutton}
+          >
+            <HomeIcon fontSize="large" />
+          </button>
         </div>
       }
       <div className={styles.minimap}>
