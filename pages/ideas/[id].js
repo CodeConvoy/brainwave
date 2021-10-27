@@ -1,12 +1,10 @@
 import Loading from '../../components/Loading';
 import Note from '../../components/Note';
 import IconButton from '../../components/IconButton';
-import Router from 'next/router';
 import Link from 'next/link';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import CommentIcon from '@mui/icons-material/Comment';
 import GetAppIcon from '@mui/icons-material/GetApp';
@@ -238,9 +236,6 @@ export default function Idea() {
       {
         !loading &&
         <div className={styles.toolbar}>
-          <IconButton onClick={() => Router.push('/ideas')}>
-            <ExitToAppIcon />
-          </IconButton>
           <SpeedDial
             ariaLabel="colordial"
             open={colorOpen}

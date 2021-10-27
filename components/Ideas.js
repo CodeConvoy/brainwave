@@ -15,7 +15,7 @@ import { useCollectionData } from 'react-firebase9-hooks/firestore';
 
 import styles from '../styles/components/Ideas.module.css';
 
-export default function Ideas() {
+export default function Ideas(props) {
   const auth = getAuth();
   const db = getFirestore();
 
@@ -61,8 +61,6 @@ export default function Ideas() {
   return (
     <div className={styles.container}>
       {
-        !ideas.length ?
-        <p>No ideas yet</p> :
         ideas.map((idea, i) =>
           <IdeaCard {...idea} key={i} />
         )

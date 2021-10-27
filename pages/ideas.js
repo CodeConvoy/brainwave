@@ -25,7 +25,7 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <Header userData={userData} />
-      <Ideas />
+      <Ideas userData={userData} />
     </div>
   );
 }
