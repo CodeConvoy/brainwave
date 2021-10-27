@@ -111,13 +111,13 @@ export default function IdeaCard(props) {
       <Modal open={modalOpen} setOpen={setModalOpen}>
         <h1>Editing {title}</h1>
         <div className={styles.tabs}>
-          <button onClick={() => setTab(0)}>
+          <button className="iconbutton" onClick={() => setTab(0)}>
             <EditIcon />
           </button>
-          <button onClick={() => setTab(1)}>
+          <button className="iconbutton" onClick={() => setTab(1)}>
             <GroupIcon />
           </button>
-          <button onClick={deleteIdea}>
+          <button className="iconbutton" onClick={deleteIdea}>
             <DeleteIcon />
           </button>
         </div>
@@ -130,12 +130,13 @@ export default function IdeaCard(props) {
             }}>
               <div className="input-button">
                 <input
+                  className="grayinput"
                   placeholder="title"
                   value={newTitle}
                   onChange={e => setNewTitle(e.target.value)}
                   required
                 />
-                <button>
+                <button className="iconbutton">
                   <AddIcon />
                 </button>
               </div>
@@ -164,12 +165,13 @@ export default function IdeaCard(props) {
             }}>
               <div className="input-button">
                 <input
+                  className="grayinput"
                   placeholder="username"
                   value={username}
                   onChange={e => setUsername(e.target.value)}
                   required
                 />
-                <button>
+                <button className="iconbutton">
                   <SearchIcon />
                 </button>
               </div>
