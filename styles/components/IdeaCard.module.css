@@ -7,18 +7,31 @@
 
 .container:hover > div {
   background: var(--lightgray);
+  color: var(--blue);
+}
+
+.container p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .editbutton {
   position: absolute;
-  right: 8px;
-  top: 8px;
-  width: 32px;
-  height: 32px;
+  right: 5px;
+  top: 5px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
+  border: 0;
+  background: transparent;
+}
+
+.editbutton:hover {
+  color: var(--blue);
 }
 
 .container:hover .editbutton {

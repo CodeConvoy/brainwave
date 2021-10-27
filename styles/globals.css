@@ -65,6 +65,10 @@ button {
   padding: 5px;
 }
 
+.flexfill {
+  flex-grow: 1;
+}
+
 .iconbutton {
   padding: 0;
   width: 32px;
