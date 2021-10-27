@@ -1,6 +1,5 @@
 import Loading from '../../components/Loading';
 import Note from '../../components/Note';
-import IconButton from '../../components/IconButton';
 import Link from 'next/link';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
