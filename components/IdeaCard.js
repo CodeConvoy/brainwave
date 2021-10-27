@@ -21,7 +21,7 @@ import { useState } from 'react';
 import styles from '../styles/components/IdeaCard.module.css';
 
 export default function IdeaCard(props) {
-  const { id, title, members, creator } = props;
+  const { id, title, members, creator, memberData } = props;
 
   const db = getFirestore();
   const auth = getAuth();
@@ -49,17 +49,19 @@ export default function IdeaCard(props) {
   }
 
   // adds given user to idea
-  async function addMember(mUid) {
+  async function addMember(user) {
     await updateDoc(ideaDoc, {
-      members: arrayUnion(mUid)
+      members: arrayUnion(user.uid),
+      memberData: arrayUnion({ uid: user.uid, username: user.username })
     });
   }
 
   // removes given user from idea
-  async function removeMember(mUid) {
-    if (!window.confirm(`Remove ${mUid} from ${title}?`)) return;
+  async function removeMember(user) {
+    if (!window.confirm(`Remove ${user.username} from ${title}?`)) return;
     await updateDoc(ideaDoc, {
-      members: arrayRemove(mUid)
+      members: arrayRemove(user.uid),
+      memberData: arrayRemove(user)
     });
   }
 
@@ -145,12 +147,12 @@ export default function IdeaCard(props) {
           tab === 1 &&
           <div>
             {
-              members.map(mUid =>
-                <div className={styles.user} key={mUid}>
-                  <span>{mUid}</span>
+              memberData.map(member =>
+                <div className={styles.user} key={member.uid}>
+                  <span>{member.username}</span>
                   {
-                    mUid !== creator &&
-                    <IconButton onClick={() => removeMember(mUid)}>
+                    member.uid !== creator &&
+                    <IconButton onClick={() => removeMember(member)}>
                       <RemoveIcon />
                     </IconButton>
                   }
@@ -184,7 +186,7 @@ export default function IdeaCard(props) {
                     <span>{user.username}</span>
                     {
                       !members.includes(user.uid) &&
-                      <IconButton onClick={() => addMember(user.uid)}>
+                      <IconButton onClick={() => addMember(user)}>
                         <AddIcon />
                       </IconButton>
                     }

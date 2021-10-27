@@ -41,6 +41,9 @@ export default function Ideas() {
       title: title,
       creator: uid,
       members: [uid],
+      memberData: [
+        { uid, username: props.userData.username }
+      ],
       created: now,
       modified: now,
       sketch: null,
