@@ -81,12 +81,13 @@ export default function Ideas(props) {
         }}>
           <div className="input-button">
             <input
+              className="grayinput"
               placeholder="title"
               value={title}
               onChange={e => setTitle(e.target.value)}
               required
             />
-            <button>
+            <button className="iconbutton">
               <AddIcon />
             </button>
           </div>

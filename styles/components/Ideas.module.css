@@ -18,6 +18,7 @@
 
 .createcard:hover {
   background: var(--lightgray);
+  color: var(--blue);
 }
 
 .createcard svg {
@@ -25,5 +26,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--darkgray);
 }

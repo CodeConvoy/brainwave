@@ -59,6 +59,28 @@ button {
   margin: 5px;
 }
 
+.grayinput {
+  border: 2px solid #bbb;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.iconbutton {
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 3px #000;
+  border: 0;
+  border-radius: 5px;
+}
+
+.iconbutton:hover {
+  background: #ddd;
+}
+
 :root {
   --lightgray: #fafafa;
   --gray: #eaeef3;
