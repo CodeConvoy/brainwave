@@ -1,6 +1,7 @@
 import Loading from '../../components/Loading';
 import Note from '../../components/Note';
 import Link from 'next/link';
+import MapIcon from '@mui/icons-material/Map';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
@@ -323,7 +324,7 @@ export default function Idea() {
           <button
             onClick={() => setMinimapOpen(true)}
           >
-            <AddIcon />
+            <MapIcon />
           </button>
         }
         <canvas

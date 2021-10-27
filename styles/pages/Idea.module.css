@@ -33,20 +33,22 @@
 
 .minimap > button {
   position: absolute;
-  height: 24px;
-  width: 24px;
+  height: 32px;
+  width: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  right: 8px;
-  bottom: 8px;
-  border: 2px solid var(--black);
+  right: 0;
+  bottom: 0;
+  border: 0;
+  box-shadow: 0 0 5px #000;
   background: var(--gray);
   border-radius: 50%;
+  background: #fff;
 }
 
 .minimap > button:hover {
-  background: #bbb;
+  background: #ddd;
 }
 
 .minimap > canvas {
