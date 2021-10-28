@@ -159,6 +159,9 @@ export default function Idea() {
     ctx.fillStyle = 'white';
     ctx.rect(0, 0, canvasWidth, canvasHeight);
     ctx.fill();
+    saveCanvas();
+    notesDirty = true;
+    setNotes([]);
   }
 
   // downloads canvas as a png

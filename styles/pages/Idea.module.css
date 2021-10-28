@@ -28,7 +28,7 @@
   justify-content: center;
   border: 0;
   border-radius: 50%;
-  background: #fff;
+  background: #efefef;
   box-shadow: 0 0 5px #000;
   pointer-events: all;
   margin: 5px;
@@ -60,7 +60,7 @@
   box-shadow: 0 0 5px #000;
   background: var(--gray);
   border-radius: 50%;
-  background: #fff;
+  background: #efefef;
 }
 
 .minimap > button:hover {

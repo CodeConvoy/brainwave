@@ -52,6 +52,10 @@
   margin: 0 5px;
 }
 
+.tabs > button.selected {
+  background: #ccc;
+}
+
 .user {
   display: flex;
   align-items: center;

@@ -111,10 +111,20 @@ export default function IdeaCard(props) {
       <Modal open={modalOpen} setOpen={setModalOpen}>
         <h1>Editing {title}</h1>
         <div className={styles.tabs}>
-          <button className="iconbutton" onClick={() => setTab(0)}>
+          <button
+            className={
+              tab === 0 ? `iconbutton ${styles.selected}` : 'iconbutton'
+            }
+            onClick={() => setTab(0)}
+          >
             <EditIcon />
           </button>
-          <button className="iconbutton" onClick={() => setTab(1)}>
+          <button
+            className={
+              tab === 1 ? `iconbutton ${styles.selected}` : 'iconbutton'
+            }
+            onClick={() => setTab(1)}
+          >
             <GroupIcon />
           </button>
           <button className="iconbutton" onClick={deleteIdea}>
