@@ -12,11 +12,14 @@ let offsetX, offsetY;
 const createOffset = 200;
 const saveTimeout = 250;
 
+const colors = ['white', 'gray', 'yellow', 'orange', 'green', 'pink', 'blue'];
+
 export default function Note(props) {
   const { id, container } = props;
 
   const [modalOpen, setModalOpen] = useState(false);
   const [text, setText] = useState(props.text);
+  const [color, setColor] = useState(colors[0]);
 
   const noteRef = useRef();
 
@@ -99,11 +102,24 @@ export default function Note(props) {
         <EditIcon />
       </button>
       <textarea
+        style={{ background: color }}
         value={text}
         onChange={e => setText(e.target.value)}
       />
       <Modal open={modalOpen} setOpen={setModalOpen}>
         <h1>Editing {text}</h1>
+        <select
+          value={color}
+          onChange={e => setColor(e.target.value)}
+        >
+          {
+            colors.map((col, i) =>
+              <option value={col} key={i}>
+                {col}
+              </option>
+            )
+          }
+        </select>
       </Modal>
     </div>
   );
