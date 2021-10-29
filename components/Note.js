@@ -1,4 +1,5 @@
-import CloseIcon from '@mui/icons-material/Close';
+import Modal from './Modal';
+import EditIcon from '@mui/icons-material/Edit';
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -14,6 +15,7 @@ const saveTimeout = 250;
 export default function Note(props) {
   const { id, container } = props;
 
+  const [modalOpen, setModalOpen] = useState(false);
   const [text, setText] = useState(props.text);
 
   const noteRef = useRef();
@@ -93,13 +95,16 @@ export default function Note(props) {
       onMouseUp={endDrag}
       onMouseLeave={endDrag}
     >
-      <button onClick={removeNote}>
-        <CloseIcon />
+      <button onClick={() => setModalOpen(true)}>
+        <EditIcon />
       </button>
       <textarea
         value={text}
         onChange={e => setText(e.target.value)}
       />
+      <Modal open={modalOpen} setOpen={setModalOpen}>
+        <h1>Editing {text}</h1>
+      </Modal>
     </div>
   );
 }
