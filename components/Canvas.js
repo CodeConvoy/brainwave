@@ -8,8 +8,9 @@ let sketching;
 let prevX, prevY;
 let currX, currY;
 
+export default function Canvas(props) {
+  const { id, container } = props;
 
-export default function Canvas() {
   const [loading, setLoading] = useState(true);
   const canvasRef = useRef();
 
@@ -18,6 +19,26 @@ export default function Canvas() {
     canvas = canvasRef.current;
     ctx = canvas.getContext('2d');
   }, []);
+
+  // downloads canvas as a png
+  function downloadCanvas() {
+    // get canvas object url
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      // download from link element
+      const link = document.createElement('a');
+      link.download = 'idea.png';
+      link.href = url;
+      link.click();
+    });
+  }
+
+  // saves canvas as data url
+  async function saveCanvas() {
+    // save to firebase
+    const sketch = canvas.toDataURL();
+    await updateDoc(ideaRef, { sketch });
+  }
 
   // gets previous and current mouse positions
   function sketch(e) {
@@ -45,6 +66,13 @@ export default function Canvas() {
     ctx.closePath();
   }
 
+  // fills canvas with white
+  function clearCanvas() {
+    ctx.fillStyle = 'white';
+    ctx.rect(0, 0, ideaData.pixels, ideaData.pixels);
+    ctx.fill();
+    saveCanvas();
+  }
 
   return (
     <canvas
