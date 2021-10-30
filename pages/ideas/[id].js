@@ -1,5 +1,6 @@
 import Loading from '../../components/Loading';
 import Note from '../../components/Note';
+import Canvas from '../../components/Canvas';
 import Link from 'next/link';
 import Router from 'next/router';
 import MapIcon from '@mui/icons-material/Map';
@@ -23,19 +24,11 @@ import { v4 as uuid } from 'uuid';
 
 import styles from '../../styles/pages/Idea.module.css';
 
-const canvasWidth = 2048;
-const canvasHeight = 2048;
 const miniWidth = 256;
 const miniHeight = 256;
 
-let canvas, ctx;
 let miniCanvas, miniCtx;
 let container;
-
-let sketching = false;
-
-let prevX, prevY;
-let currX, currY;
 
 const noteOffset = 200;
 
@@ -46,7 +39,6 @@ const sizes = [1, 2, 3, 4, 5];
 
 export default function Idea() {
   const containerRef = useRef();
-  const canvasRef = useRef();
   const miniCanvasRef = useRef();
   const db = getFirestore();
   const router = useRouter();
@@ -345,18 +337,16 @@ export default function Idea() {
         />
       </div>
       <div className={styles.container} ref={containerRef}>
-        {loading && <Loading />}
-        <canvas
-          style={loading ? { display: 'none' } : null }
-          ref={canvasRef}
-          width={canvasWidth}
-          height={canvasHeight}
-          onMouseDown={e => { sketching = true; sketch(e); }}
-          onMouseMove={e => { if (sketching) draw(e); }}
-          onMouseUp={endSketch}
-          onMouseLeave={endSketch}
-        />
         {
+          (id && uid) ?
+          <Canvas
+            container={container}
+            id={id}
+          /> :
+          <Loading />
+        }
+        {
+          (!loading && notes) &&
           notes.map((note, i) =>
             <Note
               {...note}
