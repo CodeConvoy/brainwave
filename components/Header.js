@@ -47,7 +47,7 @@ export default function Header(props) {
           Sign Out
         </button> :
         <button className="outlinebtn" onClick={signInWithGoogle}>
-          Sign in with Google
+          Sign In
         </button>
       }
     </div>

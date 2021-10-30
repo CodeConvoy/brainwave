@@ -65,7 +65,7 @@ export default function Note(props) {
     // return if note not dirty
     if (props.x === x && props.y === y && props.text === text) return;
     // save note
-    props.saveNote({ x, y, text, id }, id);
+    props.saveNote({ x, y, text, id, color }, id);
   }
 
   // removes current note

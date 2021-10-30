@@ -12,7 +12,6 @@
   display: block;
   border: 2px solid var(--black);
   border-radius: 5px;
-  background: var(--gray);
 }
 
 .container > button {
@@ -23,10 +22,13 @@
   background: transparent;
   border: 0;
   padding: 0;
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 10px;
+  opacity: 0;
 }
 
 .container > button:hover {
   color: var(--blue);
+}
+
+.container:hover > button {
+  opacity: 1;
 }
