@@ -1,0 +1,35 @@
+.container {
+  position: absolute;
+  margin: 8px;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.container > button {
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  bottom: 0;
+  border: 0;
+  box-shadow: 0 0 5px #000;
+  background: var(--gray);
+  border-radius: 50%;
+  background: #efefef;
+}
+
+.container > button:hover {
+  background: #ddd;
+}
+
+.container > canvas {
+  display: block;
+  border: 2px solid #000;
+  background: var(--white);
+  z-index: 1;
+}

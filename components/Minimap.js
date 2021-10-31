@@ -2,6 +2,8 @@ import MapIcon from '@mui/icons-material/Map';
 
 import { useEffect, useRef, useState } from 'react';
 
+import styles from '../styles/components/Minimap.module.css';
+
 let canvas, ctx;
 
 const width = 256;
@@ -36,7 +38,7 @@ export default function Minimap(props) {
       if (sketch) {
         const image = new Image();
         image.onload = () => {
-          ctx.drawImage(image, 0, 0);
+          ctx.drawImage(image, 0, 0, width, height);
           setLoading(false);
         }
         image.src = sketch;
@@ -49,7 +51,7 @@ export default function Minimap(props) {
   }, [ideaData]);
 
   return (
-    <div>
+    <div className={styles.container}>
       {
         !open &&
         <button
@@ -59,6 +61,7 @@ export default function Minimap(props) {
         </button>
       }
       <canvas
+        style={open ? null : { display: 'none' }}
         onClick={() => setOpen(false)}
         ref={canvasRef}
         width={width}
