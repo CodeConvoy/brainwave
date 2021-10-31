@@ -85,6 +85,7 @@ export default function Idea() {
       x: container.scrollLeft + noteOffset,
       y: container.scrollTop + noteOffset,
       text: '',
+      color: 'white',
       id: uuid()
     });
     setNotes(newNotes);

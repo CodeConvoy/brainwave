@@ -19,7 +19,7 @@ export default function Note(props) {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [text, setText] = useState(props.text);
-  const [color, setColor] = useState(colors[0]);
+  const [color, setColor] = useState(props.color);
 
   const noteRef = useRef();
 

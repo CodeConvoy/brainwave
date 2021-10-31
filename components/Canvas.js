@@ -9,7 +9,7 @@ let prevX, prevY;
 let currX, currY;
 
 export default function Canvas(props) {
-  const { id, container, ideaData } = props;
+  const { id, container, ideaData, drawColor, drawSize } = props;
 
   const [loading, setLoading] = useState(true);
   const canvasRef = useRef();
@@ -24,10 +24,13 @@ export default function Canvas(props) {
     ctx = canvas.getContext('2d');
   }, []);
 
+  // update context drawing
+  useEffect(() => { ctx.strokeStyle = drawColor; }, [drawColor]);
+  useEffect(() => { ctx.lineWidth = drawSize; }, [drawSize]);
+
   // update canvas when idea data changes
   useEffect(() => {
     if (ideaData) {
-      // setNotes(ideaData.notes);
       const sketch = ideaData.sketch;
       // if sketch, load image to canvas
       if (sketch) {

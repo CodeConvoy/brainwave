@@ -37,8 +37,3 @@
 .homebutton:hover {
   background: #ddd;
 }
-
-.container > canvas {
-  background: var(--white);
-  display: block;
-}
