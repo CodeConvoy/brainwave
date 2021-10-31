@@ -10,10 +10,8 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import CommentIcon from '@mui/icons-material/Comment';
-import ImageIcon from '@mui/icons-material/Image';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import DeleteIcon from '@mui/icons-material/Delete';
-import CloseIcon from '@mui/icons-material/Close';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -53,8 +51,6 @@ export default function Idea() {
   const [drawSize, setDrawSize] = useState(1);
 
   const [actionOpen, setActionOpen] = useState(false);
-
-  const [idea, setIdea] = useState(undefined);
 
   const [notes, setNotes] = useState([]);
 
@@ -118,6 +114,16 @@ export default function Idea() {
     await updateDoc(ideaRef, { notes });
   }
 
+  // update notes when idea changes
+  useEffect(() => {
+    if (ideaData) setNotes(ideaData.notes);
+  }, [ideaData]);
+
+  // clears canvas
+  async function clearCanvas() {
+    await updateDoc(ideaRef, { notes: [], sketch: null });
+  }
+
   // save notes if dirty
   useEffect(() => {
     if (notesDirty) {
@@ -142,7 +148,6 @@ export default function Idea() {
               <SpeedDialAction
                 onClick={() => {
                   setColorOpen(false);
-                  ctx.strokeStyle = color;
                   setDrawColor(color);
                 }}
                 icon={<FiberManualRecordIcon style={{ color: color }} />}
@@ -163,7 +168,6 @@ export default function Idea() {
               <SpeedDialAction
                 onClick={() => {
                   setSizeOpen(false);
-                  ctx.lineWidth = size;
                   setDrawSize(size);
                 }}
                 icon={<FiberManualRecordIcon style={{ fontSize: size * 8 }} />}
@@ -220,6 +224,8 @@ export default function Idea() {
         {
           (id && uid) ?
           <Canvas
+            drawColor={drawColor}
+            drawSize={drawSize}
             container={container}
             ideaData={ideaData}
             id={id}
