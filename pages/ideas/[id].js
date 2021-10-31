@@ -1,15 +1,16 @@
 import Loading from '../../components/Loading';
 import Note from '../../components/Note';
 import Canvas from '../../components/Canvas';
+import Minimap from '../../components/Minimap';
 import Link from 'next/link';
 import Router from 'next/router';
-import MapIcon from '@mui/icons-material/Map';
 import HomeIcon from '@mui/icons-material/Home';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import CommentIcon from '@mui/icons-material/Comment';
+import ImageIcon from '@mui/icons-material/Image';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
@@ -17,6 +18,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { useDocumentData } from 'react-firebase9-hooks/firestore';
 import { getAuth } from 'firebase/auth';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -35,7 +37,6 @@ const sizes = [1, 2, 3, 4, 5];
 
 export default function Idea() {
   const containerRef = useRef();
-  const miniCanvasRef = useRef();
   const db = getFirestore();
   const router = useRouter();
   const auth = getAuth();
@@ -57,7 +58,9 @@ export default function Idea() {
 
   const [notes, setNotes] = useState([]);
 
-  const [minimapOpen, setMinimapOpen] = useState(true);
+  // listen for idea data
+  const ideaRef = doc(db, 'ideas', id ?? '~');
+  const [ideaData] = useDocumentData(ideaRef);
 
   // scrolls container by given values
   function scrollContainer(x, y) {
@@ -71,13 +74,9 @@ export default function Idea() {
     scrollContainer(e.deltaX, e.deltaY);
   }
 
-  // on start
+  // set up container on start
   useEffect(() => {
-    // get element references
-    miniCanvas = miniCanvasRef.current;
-    miniCtx = miniCanvas.getContext('2d');
     container = containerRef.current;
-    // set up container wheel listener
     container.addEventListener('wheel', onWheel);
     return () => container.removeEventListener('wheel', onWheel);
   }, []);
@@ -216,11 +215,13 @@ export default function Idea() {
           </button>
         </div>
       }
+      <Minimap ideaData={ideaData} />
       <div className={styles.container} ref={containerRef}>
         {
           (id && uid) ?
           <Canvas
             container={container}
+            ideaData={ideaData}
             id={id}
           /> :
           <Loading />

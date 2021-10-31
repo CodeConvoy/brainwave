@@ -9,7 +9,7 @@ let prevX, prevY;
 let currX, currY;
 
 export default function Canvas(props) {
-  const { id, container } = props;
+  const { id, container, ideaData } = props;
 
   const [loading, setLoading] = useState(true);
   const canvasRef = useRef();
@@ -17,7 +17,6 @@ export default function Canvas(props) {
   // listen for idea data
   const db = getFirestore();
   const ideaRef = doc(db, 'ideas', id);
-  const [ideaData] = useDocumentData(ideaRef);
 
   // get canvas context on start
   useEffect(() => {
@@ -92,9 +91,9 @@ export default function Canvas(props) {
     ctx.closePath();
   }
 
-  // fills canvas with white
+  // clears canvas
   function clearCanvas() {
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = '#fff';
     ctx.rect(0, 0, ideaData.pixels, ideaData.pixels);
     ctx.fill();
     saveCanvas();
