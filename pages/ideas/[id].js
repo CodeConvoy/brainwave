@@ -24,10 +24,6 @@ import { v4 as uuid } from 'uuid';
 
 import styles from '../../styles/pages/Idea.module.css';
 
-const miniWidth = 256;
-const miniHeight = 256;
-
-let miniCanvas, miniCtx;
 let container;
 
 const noteOffset = 200;
@@ -58,7 +54,6 @@ export default function Idea() {
   const [actionOpen, setActionOpen] = useState(false);
 
   const [idea, setIdea] = useState(undefined);
-  const [loading, setLoading] = useState(true);
 
   const [notes, setNotes] = useState([]);
 
@@ -135,7 +130,6 @@ export default function Idea() {
   return (
     <>
       {
-        !loading &&
         <div className={styles.toolbar}>
           <SpeedDial
             ariaLabel="colordial"
@@ -222,24 +216,6 @@ export default function Idea() {
           </button>
         </div>
       }
-      <div className={styles.minimap}>
-        {
-          !minimapOpen &&
-          <button
-            onClick={() => setMinimapOpen(true)}
-          >
-            <MapIcon />
-          </button>
-        }
-        <canvas
-          style={(minimapOpen && !loading) ? null : { display: 'none' }}
-          onClick={() => setMinimapOpen(false)}
-          ref={miniCanvasRef}
-          width={miniWidth}
-          height={miniHeight}
-          className={styles.minicanvas}
-        />
-      </div>
       <div className={styles.container} ref={containerRef}>
         {
           (id && uid) ?
@@ -250,7 +226,7 @@ export default function Idea() {
           <Loading />
         }
         {
-          (!loading && notes) &&
+          notes &&
           notes.map((note, i) =>
             <Note
               {...note}
