@@ -19,7 +19,9 @@ import AddIcon from '@mui/icons-material/Add';
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useDocumentData } from 'react-firebase9-hooks/firestore';
 import { getAuth } from 'firebase/auth';
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import {
+  getStorage, ref, uploadBytes, getDownloadURL
+} from 'firebase/storage';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { v4 as uuid } from 'uuid';
@@ -31,6 +33,7 @@ let container;
 const noteOffset = 200;
 
 let notesDirty = false;
+let imagesDirty = false;
 
 const colors = ['black', 'red', 'green', 'blue', 'white'];
 const sizes = [1, 2, 3, 4, 5];
@@ -59,6 +62,7 @@ export default function Idea() {
   const [actionOpen, setActionOpen] = useState(false);
 
   const [notes, setNotes] = useState([]);
+  const [images, setImages] = useState([]);
 
   // listen for idea data
   const ideaRef = doc(db, 'ideas', id ?? '~');
@@ -139,12 +143,43 @@ export default function Idea() {
     }
   }, [notes]);
 
+  // saves images to firebase
+  async function saveImages() {
+    const ideaRef = doc(db, 'ideas', id);
+    await updateDoc(ideaRef, { images });
+  }
+
+  // save images if dirty
+  useEffect(() => {
+    if (imagesDirty) {
+      imagesDirty = false;
+      saveImages();
+    }
+  }, [images]);
+
+  // creates an image on canvas
+  function createImage(url) {
+    imagesDirty = true;
+    const newImages = images.slice();
+    newImages.push({
+      x: container.scrollLeft + noteOffset,
+      y: container.scrollTop + noteOffset,
+      url: url,
+      id: uuid()
+    });
+    setImages(newImages);
+  }
+
   // uploads current image to firebase
   async function uploadImage() {
     if (!image) return;
+    // upload image
     const filePath = `ideas/${id}/${uuid()}`;
     const fileRef = ref(storage, filePath);
     await uploadBytes(fileRef, image);
+    // create image
+    const url = await getDownloadURL(fileRef);
+    createImage(url);
   }
 
   // upload image on change
