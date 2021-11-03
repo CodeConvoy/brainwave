@@ -18,6 +18,10 @@
   margin: 5px;
 }
 
+.fileinput {
+  display: none;
+}
+
 .homebutton {
   width: 56px;
   height: 56px;

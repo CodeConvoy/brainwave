@@ -5,6 +5,7 @@ import Minimap from '../../components/Minimap';
 import Link from 'next/link';
 import Router from 'next/router';
 import HomeIcon from '@mui/icons-material/Home';
+import ImageIcon from '@mui/icons-material/Image';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
@@ -35,6 +36,7 @@ const sizes = [1, 2, 3, 4, 5];
 
 export default function Idea() {
   const containerRef = useRef();
+  const fileRef = useRef();
   const db = getFirestore();
   const router = useRouter();
   const auth = getAuth();
@@ -196,6 +198,14 @@ export default function Idea() {
             <SpeedDialAction
               onClick={() => {
                 setActionOpen(false);
+                fileRef.current.click();
+              }}
+              icon={<ImageIcon />}
+              tooltipTitle="Upload Image"
+            />
+            <SpeedDialAction
+              onClick={() => {
+                setActionOpen(false);
                 downloadCanvas();
               }}
               icon={<GetAppIcon />}
@@ -211,6 +221,11 @@ export default function Idea() {
               tooltipTitle="Clear"
             />
           </SpeedDial>
+          <input
+            className={styles.fileinput}
+            ref={fileRef}
+            type="file"
+          />
           <span className="flexfill" />
           <button
             onClick={() => Router.push('/ideas')}
