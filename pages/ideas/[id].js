@@ -19,6 +19,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useDocumentData } from 'react-firebase9-hooks/firestore';
 import { getAuth } from 'firebase/auth';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { v4 as uuid } from 'uuid';
@@ -40,11 +41,14 @@ export default function Idea() {
   const db = getFirestore();
   const router = useRouter();
   const auth = getAuth();
+  const storage = getStorage();
 
   // get idea id
   const { id } = router.query;
 
   const uid = auth.currentUser?.uid;
+
+  const [image, setImage] = useState(undefined);
 
   const [colorOpen, setColorOpen] = useState(false);
   const [drawColor, setDrawColor] = useState('black');
@@ -134,6 +138,19 @@ export default function Idea() {
       saveNotes();
     }
   }, [notes]);
+
+  // uploads current image to firebase
+  async function uploadImage() {
+    if (!image) return;
+    const filePath = `ideas/${id}/${uuid()}`;
+    const fileRef = ref(storage, filePath);
+    await uploadBytes(fileRef, image);
+  }
+
+  // upload image on change
+  useEffect(() => {
+    uploadImage();
+  }, [image]);
 
   return (
     <>
@@ -225,6 +242,8 @@ export default function Idea() {
             className={styles.fileinput}
             ref={fileRef}
             type="file"
+            accept="image/*"
+            onChange={e => setImage(e.target.files[0])}
           />
           <span className="flexfill" />
           <button
