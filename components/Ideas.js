@@ -15,20 +15,7 @@ import { useCollectionData } from 'react-firebase9-hooks/firestore';
 
 import styles from '../styles/components/Ideas.module.css';
 
-const sizes = [
-  {
-    name: 'small',
-    pixels: 2048
-  },
-  {
-    name: 'medium',
-    pixels: 4096
-  },
-  {
-    name: 'large',
-    pixels: 8192
-  }
-];
+const canvasSize = 2048;
 
 export default function Ideas(props) {
   const auth = getAuth();
@@ -47,7 +34,6 @@ export default function Ideas(props) {
   const [ideas] = useCollectionData(ideasQuery, { idField: 'id' });
 
   const [title, setTitle] = useState('');
-  const [size, setSize] = useState(sizes[0].pixels);
 
   // creates a new idea
   async function createIdea() {
@@ -55,7 +41,7 @@ export default function Ideas(props) {
     const now = new Date().getTime();
     const docRef = await addDoc(ideasRef, {
       title: title,
-      pixels: size,
+      pixels: canvasSize,
       creator: uid,
       members: [uid],
       memberData: [
@@ -104,18 +90,6 @@ export default function Ideas(props) {
               onChange={e => setTitle(e.target.value)}
               required
             />
-            <select
-              value={size}
-              onChange={e => setSize(e.target.value)}
-            >
-              {
-                sizes.map((sz, i) =>
-                  <option key={i} value={sz.pixels}>
-                    {sz.name}
-                  </option>
-                )
-              }
-            </select>
             <button className="iconbutton">
               <AddIcon />
             </button>
