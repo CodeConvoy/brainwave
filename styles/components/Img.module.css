@@ -1,3 +1,14 @@
 .container {
   position: absolute;
 }
+
+.container > img {
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.container > button {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
