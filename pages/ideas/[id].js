@@ -344,6 +344,7 @@ export default function Idea() {
           images.map((img, i) =>
             <Img
               {...img}
+              container={container}
               removeImage={removeImage}
               key={img.id}
             />
