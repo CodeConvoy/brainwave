@@ -127,9 +127,12 @@ export default function Idea() {
     });
   }
 
-  // update notes when idea changes
+  // update notes and images when idea changes
   useEffect(() => {
-    if (ideaData) setNotes(ideaData.notes);
+    if (ideaData) {
+      setNotes(ideaData.notes);
+      setImages(ideaData.images);
+    }
   }, [ideaData]);
 
   // clears canvas
@@ -322,6 +325,17 @@ export default function Idea() {
               removeNote={removeNote}
               saveNote={saveNote}
               key={note.id}
+            />
+          )
+        }
+        {
+          (images && !loading) &&
+          images.map((img, i) =>
+            <img
+              className={styles.image}
+              src={img.url}
+              style={{ left: img.x, top: img.y }}
+              key={img.id}
             />
           )
         }

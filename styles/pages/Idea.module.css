@@ -41,3 +41,8 @@
 .homebutton:hover {
   background: #ddd;
 }
+
+.image {
+  z-index: 1;
+  position: absolute;
+}
