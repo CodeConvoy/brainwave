@@ -1,7 +1,6 @@
 .container {
   position: absolute;
   background: var(--gray);
-  border-radius: 10px;
   z-index: 1;
 }
 
@@ -30,6 +29,10 @@
   border: 0;
   padding: 0;
   opacity: 0;
+}
+
+.container > button:nth-of-type(2) {
+  top: 24px;
 }
 
 .container > button:hover {

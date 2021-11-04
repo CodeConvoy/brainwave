@@ -1,5 +1,6 @@
 import Modal from './Modal';
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -101,10 +102,14 @@ export default function Note(props) {
       <button onClick={() => setModalOpen(true)}>
         <EditIcon />
       </button>
+      <button onClick={removeNote}>
+        <DeleteIcon />
+      </button>
       <textarea
         style={{ background: color }}
         value={text}
         onChange={e => setText(e.target.value)}
+        spellCheck="false"
       />
       <Modal open={modalOpen} setOpen={setModalOpen}>
         <h1>Editing note</h1>
