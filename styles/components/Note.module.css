@@ -11,22 +11,29 @@
   width: 160px;
   cursor: move!important;
   display: block;
-  border: 2px solid var(--black);
-  border-radius: 5px;
+  border: 0;
+  box-shadow: 0 0 5px #000;
 }
 
 .container > button {
   position: absolute;
   display: flex;
-  top: 0;
-  right: 0;
-  background: transparent;
+  align-items: center;
+  justify-content: center;
+  right: -16px;
+  top: -16px;
+  width: 32px;
+  height: 32px;
+  background: #efefef;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #000;
   border: 0;
   padding: 0;
   opacity: 0;
 }
 
 .container > button:hover {
+  background: #ddd;
   color: var(--blue);
 }
 

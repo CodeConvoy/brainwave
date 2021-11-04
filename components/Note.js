@@ -70,7 +70,7 @@ export default function Note(props) {
 
   // removes current note
   function removeNote() {
-    if (!window.confirm(`Delete note "${text}"?`)) return;
+    if (!window.confirm('Delete note?')) return;
     props.removeNote(id);
   }
 
@@ -107,7 +107,7 @@ export default function Note(props) {
         onChange={e => setText(e.target.value)}
       />
       <Modal open={modalOpen} setOpen={setModalOpen}>
-        <h1>Editing {text}</h1>
+        <h1>Editing note</h1>
         <select
           value={color}
           onChange={e => setColor(e.target.value)}

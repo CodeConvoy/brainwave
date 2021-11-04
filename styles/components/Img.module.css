@@ -1,6 +1,8 @@
 .container {
   position: absolute;
   cursor: move;
+  box-shadow: 0 0 5px #000;
+  display: flex;
 }
 
 .container > img {
