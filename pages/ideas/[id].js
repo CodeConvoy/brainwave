@@ -154,6 +154,15 @@ export default function Idea() {
     }
   }, [notes]);
 
+  // saves image at given id
+  function saveImage(img, id) {
+    imagesDirty = true;
+    const newImages = images.slice();
+    const index = newImages.findIndex(img => img.id === id);
+    newImages.splice(index, 1, img);
+    setImages(newImages);
+  }
+
   // saves images to firebase
   async function saveImages() {
     const ideaRef = doc(db, 'ideas', id);
@@ -346,6 +355,7 @@ export default function Idea() {
               {...img}
               container={container}
               removeImage={removeImage}
+              saveImage={saveImage}
               key={img.id}
             />
           )

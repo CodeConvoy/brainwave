@@ -44,10 +44,24 @@ export default function Img(props) {
     image.style.top = `${y - offsetY}px`;
   }
 
+  // saves image
+  function saveImage() {
+    // get image target
+    const image = imageRef.current;
+    // get image position
+    const x = parseInt(image.style.left);
+    const y = parseInt(image.style.top);
+    // return if image not dirty
+    if (props.x === x && props.y === y) return;
+    // save image
+    props.saveImage({ x, y, url, id }, id);
+  }
+
   // ends dragging
   function endDrag(e) {
     if (!dragging) return;
     dragging = false;
+    saveImage(e);
   }
 
   // on start
