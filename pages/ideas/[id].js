@@ -195,6 +195,15 @@ export default function Idea() {
     createImage(url);
   }
 
+  // removes image with given id
+  function removeImage(id) {
+    imagesDirty = true;
+    const newImages = images.slice();
+    const index = newImages.findIndex(img => img.id === id);
+    newImages.splice(index, 1);
+    setImages(newImages);
+  }
+
   // upload image on change
   useEffect(() => {
     uploadImage();
@@ -334,6 +343,7 @@ export default function Idea() {
           images.map((img, i) =>
             <Img
               {...img}
+              removeImage={removeImage}
               key={img.id}
             />
           )
