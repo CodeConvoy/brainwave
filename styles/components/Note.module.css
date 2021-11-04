@@ -2,6 +2,7 @@
   position: absolute;
   background: var(--gray);
   border-radius: 10px;
+  z-index: 1;
 }
 
 .container > textarea {
