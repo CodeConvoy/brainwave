@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { getFirestore, doc, updateDoc, } from 'firebase/firestore';
 import { useDocumentData } from 'react-firebase9-hooks/firestore';
 
@@ -9,9 +9,11 @@ let prevX, prevY;
 let currX, currY;
 
 export default function Canvas(props) {
-  const { id, container, ideaData, drawColor, drawSize } = props;
+  const {
+    id, container, ideaData, drawColor, drawSize,
+    loading, setLoading
+  } = props;
 
-  const [loading, setLoading] = useState(true);
   const canvasRef = useRef();
 
   // listen for idea data

@@ -51,18 +51,17 @@ export default function Idea() {
 
   const uid = auth.currentUser?.uid;
 
-  const [image, setImage] = useState(undefined);
-
   const [colorOpen, setColorOpen] = useState(false);
   const [drawColor, setDrawColor] = useState('black');
-
   const [sizeOpen, setSizeOpen] = useState(false);
   const [drawSize, setDrawSize] = useState(1);
-
   const [actionOpen, setActionOpen] = useState(false);
 
+  const [image, setImage] = useState(undefined);
   const [notes, setNotes] = useState([]);
   const [images, setImages] = useState([]);
+
+  const [loading, setLoading] = useState(true);
 
   // listen for idea data
   const ideaRef = doc(db, 'ideas', id ?? '~');
@@ -200,6 +199,7 @@ export default function Idea() {
   return (
     <>
       {
+        !loading &&
         <div className={styles.toolbar}>
           <SpeedDial
             ariaLabel="colordial"
@@ -301,19 +301,20 @@ export default function Idea() {
       }
       <Minimap ideaData={ideaData} />
       <div className={styles.container} ref={containerRef}>
+        {loading && <Loading />}
         {
-          (id && uid) ?
+          (id && uid) &&
           <Canvas
             drawColor={drawColor}
             drawSize={drawSize}
             container={container}
             ideaData={ideaData}
+            setLoading={setLoading}
             id={id}
-          /> :
-          <Loading />
+          />
         }
         {
-          notes &&
+          (notes && !loading) &&
           notes.map((note, i) =>
             <Note
               {...note}
