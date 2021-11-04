@@ -9,6 +9,25 @@
 
 .container > button {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: -16px;
+  top: -16px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  border: 0;
+  background: #efefef;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #000;
+}
+
+.container:hover > button {
+  opacity: 1;
+}
+
+.container > button:hover {
+  color: #2196f3;
+  background: #ddd;
 }

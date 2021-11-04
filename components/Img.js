@@ -3,7 +3,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import styles from '../styles/components/Img.module.css';
 
 export default function Img(props) {
-  const { url, x, y } = props;
+  const { url, x, y, id } = props;
 
   return (
     <div
@@ -11,7 +11,7 @@ export default function Img(props) {
       style={{ left: x, top: y }}
     >
       <img src={url} />
-      <button onClick={()=>{}}>
+      <button onClick={deleteImage}>
         <DeleteIcon />
       </button>
     </div>
