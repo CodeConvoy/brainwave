@@ -122,7 +122,10 @@ export default function Idea() {
   // saves notes to firebase
   async function saveNotes() {
     const ideaRef = doc(db, 'ideas', id);
-    await updateDoc(ideaRef, { notes });
+    await updateDoc(ideaRef, {
+      notes: notes,
+      modified: new Date().getTime()
+    });
   }
 
   // update notes when idea changes
@@ -132,7 +135,11 @@ export default function Idea() {
 
   // clears canvas
   async function clearCanvas() {
-    await updateDoc(ideaRef, { notes: [], sketch: null });
+    await updateDoc(ideaRef, {
+      notes: [],
+      sketch: null,
+      modified: new Date().getTime()
+    });
   }
 
   // save notes if dirty
@@ -146,7 +153,10 @@ export default function Idea() {
   // saves images to firebase
   async function saveImages() {
     const ideaRef = doc(db, 'ideas', id);
-    await updateDoc(ideaRef, { images });
+    await updateDoc(ideaRef, {
+      images: images,
+      modified: new Date().getTime()
+    });
   }
 
   // save images if dirty

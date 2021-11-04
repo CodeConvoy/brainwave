@@ -65,7 +65,10 @@ export default function Canvas(props) {
   async function saveCanvas() {
     // save to firebase
     const sketch = canvas.toDataURL();
-    await updateDoc(ideaRef, { sketch });
+    await updateDoc(ideaRef, {
+      sketch: sketch,
+      modified: new Date().getTime()
+    });
   }
 
   // gets previous and current mouse positions
