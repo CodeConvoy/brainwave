@@ -63,6 +63,7 @@ export default function Idea() {
   const [images, setImages] = useState([]);
 
   const [loading, setLoading] = useState(true);
+  const [download, setDownload] = useState(false);
 
   // listen for idea data
   const ideaRef = doc(db, 'ideas', id ?? '~');
@@ -281,7 +282,7 @@ export default function Idea() {
             <SpeedDialAction
               onClick={() => {
                 setActionOpen(false);
-                downloadCanvas();
+                setDownload(true);
               }}
               icon={<GetAppIcon />}
               tooltipTitle="Download"
@@ -318,11 +319,11 @@ export default function Idea() {
         {
           (id && uid) &&
           <Canvas
-            drawColor={drawColor}
-            drawSize={drawSize}
+            drawColor={drawColor} drawSize={drawSize}
             container={container}
             ideaData={ideaData}
             setLoading={setLoading}
+            download={download} setDownload={setDownload}
             id={id}
           />
         }

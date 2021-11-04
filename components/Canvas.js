@@ -11,7 +11,7 @@ let currX, currY;
 export default function Canvas(props) {
   const {
     id, container, ideaData, drawColor, drawSize,
-    loading, setLoading
+    loading, setLoading, download, setDownload
   } = props;
 
   const canvasRef = useRef();
@@ -62,6 +62,14 @@ export default function Canvas(props) {
       link.click();
     });
   }
+
+  // download canvas on update
+  useEffect(() => {
+    if (download) {
+      setDownload(false);
+      downloadCanvas();
+    }
+  }, [download]);
 
   // saves canvas as data url
   async function saveCanvas() {
