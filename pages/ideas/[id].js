@@ -1,5 +1,6 @@
 import Loading from '../../components/Loading';
 import Note from '../../components/Note';
+import Img from '../../components/Img';
 import Canvas from '../../components/Canvas';
 import Minimap from '../../components/Minimap';
 import Link from 'next/link';
@@ -331,10 +332,8 @@ export default function Idea() {
         {
           (images && !loading) &&
           images.map((img, i) =>
-            <img
-              className={styles.image}
-              src={img.url}
-              style={{ left: img.x, top: img.y }}
+            <Img
+              {...img}
               key={img.id}
             />
           )
