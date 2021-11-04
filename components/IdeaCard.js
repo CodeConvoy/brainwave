@@ -19,8 +19,16 @@ import { useState } from 'react';
 
 import styles from '../styles/components/IdeaCard.module.css';
 
+// reference times
+const now = new Date();
+const nowDay = now.getDate();
+const nowMonth = now.getMonth();
+const nowYear = now.getFullYear();
+const today = new Date(nowYear, nowMonth, nowDay).setHours(0, 0, 0, 0);
+const yesterday = new Date(nowYear, nowMonth, nowDay - 1).setHours(0, 0, 0, 0);
+
 export default function IdeaCard(props) {
-  const { id, title, members, creator, memberData } = props;
+  const { id, title, members, creator, memberData, modified } = props;
 
   const db = getFirestore();
   const auth = getAuth();
@@ -85,6 +93,16 @@ export default function IdeaCard(props) {
     setUsername('');
   }
 
+  // returns string for given datetime
+  function dateTimeString(dateTime) {
+    // separate time and date
+    const time = dateTime.toLocaleTimeString([], { timeStyle: 'short' });
+    const date = dateTime.setHours(0, 0, 0, 0);
+    if (date === today) return `${time} today`; // today
+    else if (date === yesterday) return `${time} yesterday`; // yesterday
+    else return dateTime.toLocaleDateString(); // past
+  }
+
   return (
     <>
       <Card
@@ -106,6 +124,9 @@ export default function IdeaCard(props) {
             </button>
           }
           <p>{title}</p>
+          <p className={styles.modified}>
+            {dateTimeString(new Date(modified))}
+          </p>
         </CardContent>
       </Card>
       <Modal open={modalOpen} setOpen={setModalOpen}>

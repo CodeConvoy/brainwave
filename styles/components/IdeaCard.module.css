@@ -16,6 +16,13 @@
   text-overflow: ellipsis;
 }
 
+.modified {
+  position: absolute;
+  color: #999;
+  bottom: -8px;
+  right: 8px;
+}
+
 .editbutton {
   position: absolute;
   right: 5px;
