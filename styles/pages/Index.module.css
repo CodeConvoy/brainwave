@@ -50,3 +50,15 @@
 .images > div {
   margin: 10px;
 }
+
+.footer {
+  background: var(--main0);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

@@ -92,6 +92,13 @@ export default function Index(props) {
           </div>
         </div>
       </div>
+      <div className={styles.footer}>
+        <p>
+          &copy;{' '}
+          <a href="https://codeconvoy.org">CodeConvoy</a>
+          {' '}{new Date().getFullYear()}
+        </p>
+      </div>
     </div>
   );
 }
