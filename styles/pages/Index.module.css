@@ -36,17 +36,17 @@
   font-size: 24px;
 }
 
-.demo > div {
-  border-radius: 10px;
-}
-
 .about {
   background: var(--main1);
   overflow: auto;
-  padding: 20px;
+  padding: 10px;
 }
 
 .images {
   display: flex;
   justify-content: space-around;
+}
+
+.images > div {
+  margin: 10px;
 }

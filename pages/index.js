@@ -54,30 +54,42 @@ export default function Index(props) {
       </div>
       <div className={styles.about}>
         <div className={styles.images}>
-          <Image
-            src="/img/undraw/notes.svg"
-            width="300"
-            height="300"
-            alt=""
-          />
-          <Image
-            src="/img/undraw/idea.svg"
-            width="300"
-            height="300"
-            alt=""
-          />
-          <Image
-            src="/img/undraw/draw.svg"
-            width="300"
-            height="300"
-            alt=""
-          />
-          <Image
-            src="/img/undraw/organize.svg"
-            width="300"
-            height="300"
-            alt=""
-          />
+          <div>
+            <p>Make notes and upload images.</p>
+            <Image
+              src="/img/undraw/notes.svg"
+              width="300"
+              height="300"
+              alt=""
+            />
+          </div>
+          <div>
+            <p>Ideate together on an unbounded platform.</p>
+            <Image
+              src="/img/undraw/idea.svg"
+              width="300"
+              height="300"
+              alt=""
+            />
+          </div>
+          <div>
+            <p>Sketch synchronously with your team.</p>
+            <Image
+              src="/img/undraw/draw.svg"
+              width="300"
+              height="300"
+              alt=""
+            />
+          </div>
+          <div>
+            <p>Keep all of your ideas in one place.</p>
+            <Image
+              src="/img/undraw/organize.svg"
+              width="300"
+              height="300"
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </div>
