@@ -45,12 +45,16 @@ export default function Index(props) {
       </div>
       <div className={styles.demo}>
         <p>Brainwave aims to make team brainstorming easier.</p>
-        <Image
-          src="/img/demo.png"
-          width="700"
-          height="380"
-          alt=""
-        />
+        <Link href="/ideas">
+          <a>
+            <Image
+              src="/img/demo.png"
+              width="700"
+              height="380"
+              alt=""
+            />
+          </a>
+        </Link>
       </div>
       <div className={styles.about}>
         <div className={styles.images}>

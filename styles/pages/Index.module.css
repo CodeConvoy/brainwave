@@ -27,13 +27,23 @@
 .demo {
   background: var(--main0);
   overflow: auto;
-  padding: 20px;
+  padding: 20px 0 30px 0;
   text-align: center;
 }
 
 .demo > p {
   margin: 0 0 20px 0;
   font-size: 24px;
+}
+
+.demo div {
+  box-shadow: 0 0 10px #000;
+  border-radius: 8px;
+  transition: 0.25s;
+}
+
+.demo div:hover {
+  transform: scale(1.05);
 }
 
 .about {
