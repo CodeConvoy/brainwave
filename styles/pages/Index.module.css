@@ -24,8 +24,24 @@
   border-color: var(--white);
 }
 
-.about {
+.demo {
   background: var(--main0);
+  overflow: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.demo > p {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+}
+
+.demo > div {
+  border-radius: 10px;
+}
+
+.about {
+  background: var(--main1);
   overflow: auto;
   padding: 20px;
 }
