@@ -63,19 +63,21 @@ export default function Ideas(props) {
 
   return (
     <div className={styles.container}>
-      {
-        ideas.map((idea, i) =>
-          <IdeaCard {...idea} key={i} />
-        )
-      }
-      <Card
-        className={styles.createcard}
-        onClick={() => setModalOpen(true)}
-      >
-        <CardContent>
-          <AddIcon />
-        </CardContent>
-      </Card>
+      <div className={styles.ideas}>
+        {
+          ideas.map((idea, i) =>
+            <IdeaCard {...idea} key={i} />
+          )
+        }
+        <Card
+          className={styles.createcard}
+          onClick={() => setModalOpen(true)}
+        >
+          <CardContent>
+            <AddIcon />
+          </CardContent>
+        </Card>
+      </div>
       <Modal open={modalOpen} setOpen={setModalOpen}>
         <h1>New Idea</h1>
         <form onSubmit={e => {

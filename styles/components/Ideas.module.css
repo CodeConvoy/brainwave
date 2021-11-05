@@ -1,10 +1,12 @@
 .container {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
   padding: 10px;
   background: var(--gray);
-  height: calc(100% - 80px);
+  min-height: calc(100% - 80px);
+}
+
+.ideas {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .createcard {
