@@ -9,3 +9,13 @@
 Rich and centralized idea development.
 
 Try it here: [brainwave.vercel.app](https://brainwave.vercel.app)
+
+## Contributing
+
+Brainwave is open source and free forever. It is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+To get started, clone the repository and run the server:
+
+1. `git clone https://github.com/codeconvoy/brainwave`
+2. `npm install`
+3. `npm run dev`
