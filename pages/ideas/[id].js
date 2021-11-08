@@ -335,41 +335,43 @@ export default function Idea() {
       }
       <Minimap ideaData={ideaData} />
       <div className={styles.container} ref={containerRef}>
-        {loading && <Loading />}
-        {
-          (id && uid) &&
-          <Canvas
-            drawColor={drawColor} drawSize={drawSize}
-            container={container}
-            ideaData={ideaData}
-            setLoading={setLoading}
-            id={id}
-          />
-        }
-        {
-          (notes && !loading) &&
-          notes.map((note, i) =>
-            <Note
-              {...note}
+        <div className={styles.content}>
+          {loading && <Loading />}
+          {
+            (id && uid) &&
+            <Canvas
+              drawColor={drawColor} drawSize={drawSize}
               container={container}
-              removeNote={removeNote}
-              saveNote={saveNote}
-              key={note.id}
+              ideaData={ideaData}
+              setLoading={setLoading}
+              id={id}
             />
-          )
-        }
-        {
-          (images && !loading) &&
-          images.map((img, i) =>
-            <Img
-              {...img}
-              container={container}
-              removeImage={removeImage}
-              saveImage={saveImage}
-              key={img.id}
-            />
-          )
-        }
+          }
+          {
+            (notes && !loading) &&
+            notes.map((note, i) =>
+              <Note
+                {...note}
+                container={container}
+                removeNote={removeNote}
+                saveNote={saveNote}
+                key={note.id}
+              />
+            )
+          }
+          {
+            (images && !loading) &&
+            images.map((img, i) =>
+              <Img
+                {...img}
+                container={container}
+                removeImage={removeImage}
+                saveImage={saveImage}
+                key={img.id}
+              />
+            )
+          }
+        </div>
       </div>
     </>
   );
