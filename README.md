@@ -18,11 +18,15 @@ Rich and centralized idea development.
   </a>
 </p>
 
-✏&nbsp;&nbsp;brainstorm real-time with your team</pre>
+✏&nbsp;&nbsp;brainstorm real-time with your team
 
 🗒️&nbsp;&nbsp;create customizable notes
 
 🖼️&nbsp;&nbsp;upload and manage images
+
+📸&nbsp;&nbsp;export brainstorms as png
+
+*+ more!*
 
 ## Contributing
 
