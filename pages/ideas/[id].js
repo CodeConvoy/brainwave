@@ -42,6 +42,7 @@ const sizes = [1, 2, 3, 4, 5];
 
 export default function Idea() {
   const containerRef = useRef();
+  const contentRef = useRef();
   const fileRef = useRef();
   const db = getFirestore();
   const router = useRouter();
@@ -222,7 +223,7 @@ export default function Idea() {
   // downloads canvas as a png
   async function downloadCanvas() {
     // convert container to png
-    const url = await toPng(container);
+    const url = await toPng(contentRef.current);
     // download from link element
     const link = document.createElement('a');
     link.download = `${ideaData.title}.png`;
@@ -335,7 +336,7 @@ export default function Idea() {
       }
       <Minimap ideaData={ideaData} />
       <div className={styles.container} ref={containerRef}>
-        <div className={styles.content}>
+        <div className={styles.content} ref={contentRef}>
           {loading && <Loading />}
           {
             (id && uid) &&

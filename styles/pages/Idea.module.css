@@ -5,6 +5,10 @@
   position: relative;
 }
 
+.content {
+  width: fit-content;
+}
+
 .toolbar {
   position: absolute;
   left: 0;

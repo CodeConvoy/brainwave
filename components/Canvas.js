@@ -95,7 +95,7 @@ export default function Canvas(props) {
 
   return (
     <canvas
-      style={loading ? { display: 'none' } : null}
+      style={{ display: loading ? 'none' : 'block' }}
       ref={canvasRef}
       width={ideaData?.pixels}
       height={ideaData?.pixels}
