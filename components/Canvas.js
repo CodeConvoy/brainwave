@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { getFirestore, doc, updateDoc, } from 'firebase/firestore';
 import { useDocumentData } from 'react-firebase9-hooks/firestore';
+import { toPng } from 'html-to-image';
 
 let canvas, ctx;
 let sketching;
@@ -51,16 +52,14 @@ export default function Canvas(props) {
   }, [ideaData]);
 
   // downloads canvas as a png
-  function downloadCanvas() {
+  async function downloadCanvas() {
     // get canvas object url
-    canvas.toBlob(blob => {
-      const url = URL.createObjectURL(blob);
-      // download from link element
-      const link = document.createElement('a');
-      link.download = 'idea.png';
-      link.href = url;
-      link.click();
-    });
+    const url = await toPng(canvas);
+    // download from link element
+    const link = document.createElement('a');
+    link.download = 'idea.png';
+    link.href = url;
+    link.click();
   }
 
   // download canvas on update
