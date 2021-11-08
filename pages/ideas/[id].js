@@ -336,8 +336,8 @@ export default function Idea() {
       }
       <Minimap ideaData={ideaData} />
       <div className={styles.container} ref={containerRef}>
+        {loading && <Loading />}
         <div className={styles.content} ref={contentRef}>
-          {loading && <Loading />}
           {
             (id && uid) &&
             <Canvas

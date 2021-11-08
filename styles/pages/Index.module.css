@@ -38,12 +38,11 @@
 
 .demo div {
   box-shadow: 0 0 10px #000;
-  border-radius: 8px;
   transition: 0.25s;
 }
 
 .demo div:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .about {
