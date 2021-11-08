@@ -58,7 +58,7 @@ export default function Ideas(props) {
 
   // return if loading
   if (!ideas) {
-    return <Loading />;
+    return <Loading background="var(--gray)" />;
   }
 
   return (
