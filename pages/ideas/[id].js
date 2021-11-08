@@ -26,6 +26,7 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { v4 as uuid } from 'uuid';
+import { toPng } from 'html-to-image';
 
 import styles from '../../styles/pages/Idea.module.css';
 
@@ -63,7 +64,6 @@ export default function Idea() {
   const [images, setImages] = useState([]);
 
   const [loading, setLoading] = useState(true);
-  const [download, setDownload] = useState(false);
 
   // listen for idea data
   const ideaRef = doc(db, 'ideas', id ?? '~');
@@ -219,6 +219,17 @@ export default function Idea() {
     uploadImage();
   }, [image]);
 
+  // downloads canvas as a png
+  async function downloadCanvas() {
+    // convert container to png
+    const url = await toPng(container);
+    // download from link element
+    const link = document.createElement('a');
+    link.download = `${ideaData.title}.png`;
+    link.href = url;
+    link.click();
+  }
+
   return (
     <>
       {
@@ -291,7 +302,7 @@ export default function Idea() {
             <SpeedDialAction
               onClick={() => {
                 setActionOpen(false);
-                setDownload(true);
+                downloadCanvas();
               }}
               icon={<GetAppIcon />}
               tooltipTitle="Download"
@@ -332,7 +343,6 @@ export default function Idea() {
             container={container}
             ideaData={ideaData}
             setLoading={setLoading}
-            download={download} setDownload={setDownload}
             id={id}
           />
         }
