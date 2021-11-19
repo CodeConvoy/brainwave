@@ -30,7 +30,11 @@ Rich and centralized idea development.
 
 ## Contributing
 
-Brainwave is open source and free forever. It is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+✔️&nbsp;&nbsp;Open source<br />
+✔️&nbsp;&nbsp;MIT licensed<br />
+✔️&nbsp;&nbsp;Free forever
+
+Brainwave is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 To get started, clone the repository and run the server:
 
