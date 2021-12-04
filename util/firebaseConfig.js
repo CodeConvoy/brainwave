@@ -1,6 +1,6 @@
 export const firebaseConfig = {
   apiKey: "AIzaSyDzagFyzBlso2VBLnEdNvznFyJdQipKOhg",
-  authDomain: "brainwave-app.firebaseapp.com",
+  authDomain: "app.brainwave.team",
   projectId: "brainwave-app",
   storageBucket: "brainwave-app.appspot.com",
   messagingSenderId: "796457479091",
