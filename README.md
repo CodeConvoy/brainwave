@@ -1,19 +1,19 @@
 # Brainwave
 
 <p>
-  <a href="https://brainwave.vercel.app">
+  <a href="https://brainwave.team">
     <img src="https://user-images.githubusercontent.com/27871609/140626707-e4bcefaf-e6ab-45cc-b1c6-b0067d58452d.png" height="64px">
   </a>
 </p>
 
 Rich and centralized idea development.
 
-[brainwave.vercel.app](https://brainwave.vercel.app)
+[brainwave.team](https://brainwave.team)
 
 ## Features
 
 <p>
-  <a href="https://brainwave.vercel.app">
+  <a href="https://brainwave.team">
     <img src="https://user-images.githubusercontent.com/27871609/140626560-934fe766-b7ea-4e3a-bcbf-78ab1111360d.png" height="200px">
   </a>
 </p>
